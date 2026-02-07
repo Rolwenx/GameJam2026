@@ -11,6 +11,7 @@ public class PlayerAim : MonoBehaviour
 
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
+    private bool isHardLevel;
 
     
 
@@ -71,7 +72,10 @@ public class PlayerAim : MonoBehaviour
         if (hit.collider == null)
         {
             // Rien touché → pas de laser, pas de trajectoire
-            trajectoryPrediction.Clear();
+            if (!isHardLevel)
+            {
+                trajectoryPrediction.Clear();
+            }
             lightBeam.SetActive(false);
             return;
         }
@@ -83,14 +87,16 @@ public class PlayerAim : MonoBehaviour
             lineRenderer.SetPosition(1, endPoint);
         }
 
-        RaycastHit2D hit2 = Physics2D.Raycast(
-            origin,
-            direction,
-            Mathf.Infinity,
-            trajectoryMask
-        );
+        if (!isHardLevel)
+            {
+                RaycastHit2D hit2 = Physics2D.Raycast(
+                    origin,
+                    direction,
+                    Mathf.Infinity,
+                    trajectoryMask
+                );
 
-        Vector3 endPoint2;
+                Vector3 endPoint2;
          if (hit2.collider != null)
         {
             endPoint2 = hit2.point; 
@@ -98,19 +104,20 @@ public class PlayerAim : MonoBehaviour
             lineRenderer.SetPosition(0, origin);
             lineRenderer.SetPosition(1, endPoint2);
 
-
-            // on déclenche la prédiction si ce faisceau touche quelque chose 
+                // on déclenche la prédiction si ce faisceau touche quelque chose 
             trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
         }
         else
         {
             endPoint2 = origin + direction * 10f; 
-            trajectoryPrediction.Clear();
+    
         }
-
+            }
 
         
 
+
+    
     }
 
 
