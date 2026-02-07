@@ -6,7 +6,8 @@ public class PlayerAim : MonoBehaviour
     public Transform faiseau;
     [SerializeField] private GameObject lightBeam;
     private LineRenderer lineRenderer;
-    [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private LayerMask laserHitMask;
+    [SerializeField] private LayerMask trajectoryMask;
 
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
@@ -59,24 +60,56 @@ public class PlayerAim : MonoBehaviour
         Vector3 origin = faiseau.position;
         Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity);
+        // 1️⃣ LASER : qu’est-ce que le faisceau touche ?
+        RaycastHit2D hit = Physics2D.Raycast(
+            origin,
+            direction,
+            Mathf.Infinity,
+            laserHitMask
+        );
 
-        Vector3 endPoint;
-
-        if (hit.collider != null)
+        if (hit.collider == null)
         {
-            endPoint = hit.point;
-             // on déclenche la prédiction si ce faisceau touche quelque chose
-            trajectoryPrediction.DrawFromHit(hit.point, direction, hit.normal);
+            // Rien touché → pas de laser, pas de trajectoire
+            trajectoryPrediction.Clear();
+            lightBeam.SetActive(false);
+            return;
         }
         else
         {
-            endPoint = origin + direction * maxDistance;
+              // Laser visible jusqu’au hit
+            Vector3 endPoint = hit.point;
+            lineRenderer.SetPosition(0, origin);
+            lineRenderer.SetPosition(1, endPoint);
+        }
+
+        RaycastHit2D hit2 = Physics2D.Raycast(
+            origin,
+            direction,
+            Mathf.Infinity,
+            trajectoryMask
+        );
+
+        Vector3 endPoint2;
+         if (hit2.collider != null)
+        {
+            endPoint2 = hit2.point; 
+
+            lineRenderer.SetPosition(0, origin);
+            lineRenderer.SetPosition(1, endPoint2);
+
+
+            // on déclenche la prédiction si ce faisceau touche quelque chose 
+            trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
+        }
+        else
+        {
+            endPoint2 = origin + direction * 10f; 
             trajectoryPrediction.Clear();
         }
 
-        lineRenderer.SetPosition(0, origin);
-        lineRenderer.SetPosition(1, endPoint);
+
+        
 
     }
 
