@@ -8,6 +8,9 @@ public class PlayerAim : MonoBehaviour
     private LineRenderer lineRenderer;
     [SerializeField] private float maxDistance = 10f;
 
+    [Header("Prediction")]
+    [SerializeField] private TrajectoryPrediction trajectoryPrediction;
+
     
 
 
@@ -63,15 +66,18 @@ public class PlayerAim : MonoBehaviour
         if (hit.collider != null)
         {
             endPoint = hit.point;
+             // on déclenche la prédiction si ce faisceau touche quelque chose
+            trajectoryPrediction.DrawFromHit(hit.point, direction, hit.normal);
         }
         else
         {
             endPoint = origin + direction * maxDistance;
+            trajectoryPrediction.Clear();
         }
 
-        // DRAW LINE RENDERER
         lineRenderer.SetPosition(0, origin);
         lineRenderer.SetPosition(1, endPoint);
+
     }
 
 
