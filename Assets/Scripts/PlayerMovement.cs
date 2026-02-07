@@ -2,66 +2,76 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Movement")]
-    [SerializeField] private float moveSpeed = 6f;
+    [Header("Move")]
+    [SerializeField] private float walkSpeed = 5f;
+    [SerializeField] private float runSpeed = 8f;
 
     [Header("Jump")]
-    [SerializeField] private float jumpForce = 12f;
-    [SerializeField] private Transform isItGround;
-    [SerializeField] private float groundCheckRadius = 0.15f;
+    [SerializeField] private float jumpForce = 8f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundRadius = 0.15f;
     [SerializeField] private LayerMask groundLayer;
 
-    private Rigidbody2D rb;
-    private Animator anim;
-    private SpriteRenderer sr;
+    [Header("Better Jump")]
+    [SerializeField] private float fallMultiplier = 3f;
+    [SerializeField] private float lowJumpMultiplier = 2f;
 
-    private float xInput;
-    private bool jumpPressed;
-    private bool isGrounded;
+    private Rigidbody2D body;
+    private Animator animator;
+    private SpriteRenderer sr;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-
-        rb.freezeRotation = true;
     }
 
     private void Update()
     {
-        // movement
-        xInput = Input.GetAxisRaw("Horizontal"); // -1, 0, 1
-        if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
-            jumpPressed = true;
+        float x = Input.GetAxisRaw("Horizontal");
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        // check if char on ground
-        isGrounded = Physics2D.OverlapCircle(isItGround.position, groundCheckRadius, groundLayer);
+        bool isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position, groundRadius, groundLayer);
+
+        animator.SetBool("IsGrounded", isGrounded);
 
         // Flip
-        if (xInput != 0)
-            sr.flipX = xInput < 0;
+        if (x != 0) sr.flipX = x < 0;
 
-        anim.SetFloat("Speed", Mathf.Abs(xInput));
-        anim.SetBool("IsGrounded", isGrounded);
-    }
+        // Blend Tree
+        float animSpeed = 0f;
+        if (Mathf.Abs(x) > 0.01f)
+            animSpeed = isRunning ? 1f : 0.5f;
 
-    private void FixedUpdate()
-    {
-        // Move
-        rb.linearVelocity = new Vector2(xInput * moveSpeed, rb.linearVelocity.y);
+        animator.SetFloat("Speed", animSpeed);
 
         // Jump
-        if (jumpPressed && isGrounded)
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
+            animator.SetTrigger("Jump");
+        }
 
-        jumpPressed = false;
+        // Horizontal move
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
+        body.linearVelocity = new Vector2(x * currentSpeed, body.linearVelocity.y);
+
+        // 🔥 BETTER JUMP FEEL
+        if (body.linearVelocity.y < 0)
+        {
+            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (body.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        {
+            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (isItGround == null) return;
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(isItGround.position, groundCheckRadius);
+        if (groundCheck == null) return;
+        Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
     }
 }
