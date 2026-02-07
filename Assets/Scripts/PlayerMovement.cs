@@ -31,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning;
     private bool jumpPressed;
 
+    
+
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -135,5 +137,12 @@ public class PlayerMovement : MonoBehaviour
             Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.left * wallCheckDistance);
         }
     }
+
+    public float CurrentX => x;
+    public bool IsRunning => isRunning;
+    public bool JumpTriggered => jumpPressed;
+    public bool IsGroundedPublic => IsGrounded();
+    public float CurrentSpeed =>
+        Mathf.Abs(x) < 0.01f ? 0f : (isRunning ? 1f : 0.5f);
 }
     
