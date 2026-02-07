@@ -10,7 +10,7 @@ public class OuverturePorte : MonoBehaviour
 
     private List<Collider2D> historyHit;
 
-    private bool opened = false;
+    public bool opened = false;
 
     private void Start()
     {
@@ -21,13 +21,14 @@ public class OuverturePorte : MonoBehaviour
     {
         if (opened || porte == null) return;
 
-        HashSet<Transform> neededCristaux = GetLitGrosCristaux();
+        HashSet<Transform> neededCristaux = GetLitGrosCristaux(); // cristaux nécessaire pour ouvrir la porte
         Debug.Log("LitSet : " + string.Join(", ", neededCristaux.Select(t => t.name)));
-        HashSet<Transform> touchedSet = GetTouchedGrosCristaux();
+        HashSet<Transform> touchedSet = GetTouchedGrosCristaux(); // cristaux qui ont été touchés par le rayon du joueur
+        Debug.Log("TouchedSet : " + string.Join(", ", touchedSet.Select(t => t.name)));
 
         if (neededCristaux.Count == 0 || touchedSet.Count == 0) return;
 
-        if (!neededCristaux.SetEquals(touchedSet)) return;
+        if (!neededCristaux.SetEquals(touchedSet)) return; // on vérifie si la liste des cristaux touchées correspond à la liste des cristaux qui doivent être allumés
 
         opened = true;
         porte.SetActive(false);
