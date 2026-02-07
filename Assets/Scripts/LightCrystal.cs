@@ -16,7 +16,7 @@ public class LightCrystal : MonoBehaviour
 
     [Header("Fall")]
     [SerializeField] private float fallGravityScale = 1f;
-    [SerializeField] private Collider2D crystalCollider;
+    private Collider2D crystalCollider;
 
     private Light2D light2D;
     private Coroutine routine;
@@ -138,7 +138,8 @@ public class LightCrystal : MonoBehaviour
             }
         }
 
-
+        // on lock les mouvements sur l'axe X
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;    
         bc.isTrigger = false; // s'assure que le cristal peut interagir avec le sol après être tombé
 
     }

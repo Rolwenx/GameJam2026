@@ -34,8 +34,6 @@ public class PlayerAim : MonoBehaviour
     private void Update()
     {
         HandleAiming();
-        // display the history of hit in the console
-        Debug.Log("History of hit: " + string.Join(", ", historyHit.Select(h => h.name)));
         HandleBeam();
     }
 
