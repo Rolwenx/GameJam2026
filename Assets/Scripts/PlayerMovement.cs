@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;           // souvent = groundLayer
     [SerializeField] private float airWallPushDampen = 0.1f; // 0 = stop net, 0.1 = léger push
 
+    [SerializeField] private Vector2 socketOffsetRight = new Vector2(0.35f, 0.1f);
+    [SerializeField] private Transform socketCristal;
+
     private Rigidbody2D body;
     private Animator animator;
     private SpriteRenderer sr;
@@ -53,6 +56,16 @@ public class PlayerMovement : MonoBehaviour
             jumpPressed = true;
 
         if (x != 0) sr.flipX = x < 0;
+
+
+        // Socket toujours devant
+        if (socketCristal != null)
+        {
+            bool facingLeft = sr.flipX; // true = gauche
+            Vector2 off = socketOffsetRight;
+            off.x = facingLeft ? -Mathf.Abs(off.x) : Mathf.Abs(off.x);
+            socketCristal.localPosition = off;
+        }
 
         float animSpeed = 0f;
         if (Mathf.Abs(x) > 0.01f)
