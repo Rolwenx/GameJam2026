@@ -59,7 +59,7 @@ public class PlayerAim : MonoBehaviour
         Vector3 origin = faiseau.position;
         Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
 
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxDistance);
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity);
 
         Vector3 endPoint;
 
