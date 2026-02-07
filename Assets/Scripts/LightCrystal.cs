@@ -31,6 +31,7 @@ public class LightCrystal : MonoBehaviour
 
     public void Calltolight()
     {
+        gameObject.tag = "Lit"; // change le tag pour que le player puisse détecter que c'est allumé
         if (light2D == null) return;
 
         // Evite de superposer plusieurs coroutines

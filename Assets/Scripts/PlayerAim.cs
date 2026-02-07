@@ -89,12 +89,17 @@ public class PlayerAim : MonoBehaviour
             if (isHardLevel)
             {
                 trajectoryPrediction.Clear();
-
-                LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
-                if (crystal != null)
+                
+                // si l'élement cristal a un tag lit, on passe
+                if (!hit2.collider.CompareTag("Lit"))
                 {
-                    crystal.Calltolight();
+                    LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
+                    if (crystal != null)
+                    {
+                        crystal.Calltolight();
+                    }
                 }
+                
             }
             else
             {
