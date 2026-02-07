@@ -2580,7 +2580,7 @@ MonoBehaviour:
   maxBounces: 1
   reflectLayer:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 528
   trajectory_line: {fileID: 1982756728}
 --- !u!120 &595188728
 LineRenderer:
@@ -35352,7 +35352,7 @@ MonoBehaviour:
     m_Bits: 192
   trajectoryMask:
     serializedVersion: 2
-    m_Bits: 272
+    m_Bits: 528
   trajectoryPrediction: {fileID: 595188727}
 --- !u!50 &1858145488
 Rigidbody2D:
