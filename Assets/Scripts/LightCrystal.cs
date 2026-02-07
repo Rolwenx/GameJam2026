@@ -42,13 +42,13 @@ public class LightCrystal : MonoBehaviour
 
     }
 
-    public void Calltolight(bool hardLevel)
+    public void Calltolight(bool petitCristal)
     {
 
         
         gameObject.tag = "Lit";
-        Debug.Log("LightCrystal: Calltolight() appelé. HardLevel = " + hardLevel);  
-        if(hardLevel){
+        Debug.Log("LightCrystal: Calltolight() appelé. PetitCristal = " + petitCristal);  
+        if(petitCristal){
       
             if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
                 if (light2D == null) return;
@@ -142,4 +142,12 @@ public class LightCrystal : MonoBehaviour
         bc.isTrigger = false; // s'assure que le cristal peut interagir avec le sol après être tombé
 
     }
+
+    public void CancelAll()
+    {
+        StopAllCoroutines();          // stop toutes les coroutines de CE script
+        routine = null;               // si tu utilises un champ Coroutine routine
+        if (light2D != null) light2D.intensity = 0f;  // optionnel : éteint
+    }
+
 }

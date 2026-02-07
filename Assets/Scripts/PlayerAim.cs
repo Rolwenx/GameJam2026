@@ -1,4 +1,7 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
+
 
 public class PlayerAim : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class PlayerAim : MonoBehaviour
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
     [SerializeField] private bool isHardLevel;
+    private List<Collider2D> historyHit = new List<Collider2D>();
 
     
 
@@ -30,6 +34,8 @@ public class PlayerAim : MonoBehaviour
     private void Update()
     {
         HandleAiming();
+        // display the history of hit in the console
+        Debug.Log("History of hit: " + string.Join(", ", historyHit.Select(h => h.name)));
         HandleBeam();
     }
 
@@ -63,6 +69,8 @@ public class PlayerAim : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, laserHitMask);
 
+        historyHit.Clear();
+
         float maxDist = Mathf.Infinity;
 
         if (hit.collider == null)
@@ -76,6 +84,7 @@ public class PlayerAim : MonoBehaviour
         }
         else
         {
+
             lineRenderer.SetPosition(0, origin);
             lineRenderer.SetPosition(1, hit.point);
 
@@ -86,9 +95,11 @@ public class PlayerAim : MonoBehaviour
 
         if (hit2.collider != null)
         {
-            if (isHardLevel)
+            historyHit.Add(hit2.collider);
+            if (hit2.collider.name.Contains("Cristal"))
             {
                 trajectoryPrediction.Clear();
+                bool petitCristal = true;
                 
                 // si l'élement cristal a un tag lit, on passe
                 if (!hit2.collider.CompareTag("Lit"))
@@ -96,7 +107,7 @@ public class PlayerAim : MonoBehaviour
                     LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
                     if (crystal != null)
                     {
-                        crystal.Calltolight(isHardLevel);
+                        crystal.Calltolight(petitCristal);
                     }
                 }
 
@@ -117,6 +128,8 @@ public class PlayerAim : MonoBehaviour
                 lineRenderer.SetPosition(1, hit2.point);
 
                 trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
+                foreach (var h in trajectoryPrediction.History)
+                    historyHit.Add(h.collider);
             }
         }
         else
@@ -124,6 +137,7 @@ public class PlayerAim : MonoBehaviour
             if (!isHardLevel)
             {
                 trajectoryPrediction.Clear();
+                historyHit.Clear();
             }
         }
     }
