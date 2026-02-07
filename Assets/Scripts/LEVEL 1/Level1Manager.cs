@@ -3,6 +3,10 @@ using UnityEngine;
 public class Level1Manager : MonoBehaviour
 {
     public DialogueUI dialogueUI;
+
+    [SerializeField] private Transform player;
+    [SerializeField] private FollowerDialogueActor bibi;
+
     private int Cristal1HasBeenLit = 0;
 
     private string[] dialoguesFollower =
@@ -16,18 +20,32 @@ public class Level1Manager : MonoBehaviour
     private string indicationText =
         "Clique gauche pour projeter de la lumière vers un fragment. ";
 
+    // Mini-dialogue après tuto cristal
+    private string[] dialoguesAfterCrystal =
+    {
+        "Bibi : On dirait que les cristaux ne sont pas assez puissants pour tenir longtemps.",
+        "Bibi : Essaie peut-être de les lier avec un autre cristal pour voir. Il y en a un tout devant."
+    };
+
     private int index = 0;
     private bool followerFinished = false;
+    private bool crystalDialogueActive = false;
 
     void Start()
     {
         Time.timeScale = 0f;
+        bibi.ShowNearPlayer(player);
         dialogueUI.ShowFollower(dialoguesFollower[index]);
     }
 
     void Update()
     {
-        // Séquence dialogue follower
+        if (crystalDialogueActive && Input.GetMouseButtonDown(0))
+        {
+            AdvanceCrystalDialogue();
+            return;
+        }
+
         if (!followerFinished && Input.GetMouseButtonDown(0))
         {
             NextFollowerDialogue();
@@ -55,21 +73,47 @@ public class Level1Manager : MonoBehaviour
         dialogueUI.HideFollower();
         dialogueUI.ShowIndication(indicationText);
 
-        // Le jeu reprend ici
+        bibi.Hide(); // 👈 Bibi disparaît
         Time.timeScale = 1f;
-
     }
 
-    /// faire un truc dans le update en mode if crystal called "Cristal1" gets the tag "Lit" (for 5s),
-    /// le compteur Cristal1HasBeenLit +1
-    /// Si Cristal1 repasse en tag "Unlit" ensuite, le compteur Cristal1HasBeenLit +1 
-    /// Si Cristal1HasBeenLit = 2, ca veut dire que le joueur a fait le tutoriel.
-    /// On met pause au jeu 
-    /// Indication dialogue revient : "On dirait que les cristaux ne sont pas assez puissants pour tenir longtemps"
-    /// "Essaie peut-être de les lier avec un autre cristal pour voir.
-    /// Jeu reprend (et on verra)
-    /// 
-    //
-    /// 
+    private void OnEnable()
+    {
+        LightCrystal.OnTutorialCrystalFinished += OnCrystalTutorialDone;
+    }
+
+    private void OnDisable()
+    {
+        LightCrystal.OnTutorialCrystalFinished -= OnCrystalTutorialDone;
+    }
+
+    private void OnCrystalTutorialDone()
+    {
+        Time.timeScale = 0f;
+
+        dialogueUI.HideIndication();
+        bibi.ShowNearPlayer(player); // 👈 réapparition
+        dialogueUI.ShowFollower(dialoguesAfterCrystal[0]);
+
+        crystalDialogueActive = true;
+        index = 0;
+}
+
+    void AdvanceCrystalDialogue()
+{
+    index++;
+
+    if (index >= dialoguesAfterCrystal.Length)
+    {
+        crystalDialogueActive = false;
+        dialogueUI.HideFollower();
+        bibi.Hide(); // 👈 disparaît
+        Time.timeScale = 1f;
+    }
+    else
+    {
+        dialogueUI.ShowFollower(dialoguesAfterCrystal[index]);
+    }
+}
 
 }

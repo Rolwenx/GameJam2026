@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 using UnityEngine.Rendering.Universal;
 
 public class LightCrystal : MonoBehaviour
@@ -13,19 +14,18 @@ public class LightCrystal : MonoBehaviour
     [SerializeField] private float stayLitTime = 3f;
     [SerializeField] private float delayBeforeExplode = 1.5f; // 1–2 sec
 
-    [Header("Explosion")]
-    [SerializeField] private string explodeTriggerName = "Explode";
-
     [Header("Fall")]
     [SerializeField] private float fallGravityScale = 1f;
     [SerializeField] private Collider2D crystalCollider;
 
     private Light2D light2D;
-    private Animator anim;
-    private GameObject explosionEffect;
     private Coroutine routine;
 
     private GameObject[] cristalChildren;
+    [Header("Tutorial")]
+    [SerializeField] public bool isItTutorial = true;
+    public bool hasTutorialbeenDone = false;
+    public static event Action OnTutorialCrystalFinished;
 
     private void Awake()
     {
@@ -50,12 +50,8 @@ public class LightCrystal : MonoBehaviour
         Debug.Log("LightCrystal: Calltolight() appelé. HardLevel = " + hardLevel);  
         if(hardLevel){
       
-            explosionEffect = cristalChildren[1].gameObject;
-            anim = explosionEffect.GetComponent<Animator>();
-            explosionEffect.SetActive(false); // désactive l'anim au départ pour économiser les
-
             if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
-                if (light2D == null || anim == null) return;
+                if (light2D == null) return;
 
             if (routine != null) StopCoroutine(routine);
             routine = StartCoroutine(Sequence());
@@ -70,17 +66,19 @@ public class LightCrystal : MonoBehaviour
 
     private IEnumerator SequenceEasyLevel()
     {
-        // 1) allume
         yield return FadeIntensity(offIntensity, onIntensity, fadeDuration);
-
-        // 2) reste allumé
         yield return new WaitForSeconds(stayLitTime);
-
-        // 3) éteint
         yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
+
+        if (isItTutorial && !hasTutorialbeenDone)
+        {
+            Debug.Log("hi");
+
+            hasTutorialbeenDone = true;
+            OnTutorialCrystalFinished?.Invoke();
+        }
+
         gameObject.tag = "Unlit";
-
-
         routine = null;
     }
 
@@ -95,18 +93,7 @@ public class LightCrystal : MonoBehaviour
         // 3) éteint
         yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
 
-        // 4) délai avant explosion
-        yield return new WaitForSeconds(delayBeforeExplode);
-        explosionEffect.SetActive(true); // au cas où l'anim est désactivée pour économiser les ressources pendant qu'elle est éteinte
-        // 5) explosion
-        anim.ResetTrigger(explodeTriggerName);
-        anim.SetTrigger(explodeTriggerName);
-
-        // attendre 0,04 secondes (durée de l'explosion) avant de passer à la suite
-        yield return new WaitForSeconds(0.4f);
-
-        // 7) après l'explosion -> il tombe
-        explosionEffect.SetActive(false); 
+    
         StartFalling();
 
         routine = null;
