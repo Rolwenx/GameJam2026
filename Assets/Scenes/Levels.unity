@@ -825,6 +825,9 @@ MonoBehaviour:
   reflectLayer:
     serializedVersion: 2
     m_Bits: 512
+  stopLayer:
+    serializedVersion: 2
+    m_Bits: 192
   trajectory_line: {fileID: 1499116420}
 --- !u!120 &88837045
 LineRenderer:
