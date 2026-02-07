@@ -15,7 +15,7 @@ public class PlayerAim : MonoBehaviour
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
     [SerializeField] private bool isHardLevel;
-    private List<Collider2D> historyHit = new List<Collider2D>();
+    public List<Collider2D> historyHit = new List<Collider2D>();
 
     
 
@@ -34,6 +34,7 @@ public class PlayerAim : MonoBehaviour
     private void Update()
     {
         HandleAiming();
+        Debug.Log("HistoryHit : " + string.Join(", ", historyHit.Select(c => c.name)));
         HandleBeam();
     }
 
