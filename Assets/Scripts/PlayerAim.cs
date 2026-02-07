@@ -11,7 +11,7 @@ public class PlayerAim : MonoBehaviour
 
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
-    private bool isHardLevel;
+    [SerializeField] private bool isHardLevel;
 
     
 
