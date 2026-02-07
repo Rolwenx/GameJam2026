@@ -61,67 +61,58 @@ public class PlayerAim : MonoBehaviour
         Vector3 origin = faiseau.position;
         Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
 
-        // 1️⃣ LASER : qu’est-ce que le faisceau touche ?
-        RaycastHit2D hit = Physics2D.Raycast(
-            origin,
-            direction,
-            Mathf.Infinity,
-            laserHitMask
-        );
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, laserHitMask);
+
+        float maxDist = Mathf.Infinity;
 
         if (hit.collider == null)
         {
-            // Rien touché → pas de laser, pas de trajectoire
             if (!isHardLevel)
             {
                 trajectoryPrediction.Clear();
                 lightBeam.SetActive(false);
             }
-
             return;
         }
         else
         {
-              // Laser visible jusqu’au hit
-            Vector3 endPoint = hit.point;
             lineRenderer.SetPosition(0, origin);
-            lineRenderer.SetPosition(1, endPoint);
+            lineRenderer.SetPosition(1, hit.point);
 
+            maxDist = hit.distance;
         }
 
-        RaycastHit2D hit2 = Physics2D.Raycast(
-            origin,
-            direction,
-            Mathf.Infinity,
-            trajectoryMask
-        );
+        RaycastHit2D hit2 = Physics2D.Raycast(origin, direction, maxDist, trajectoryMask);
 
-        Vector3 endPoint2;
         if (hit2.collider != null)
         {
-            if(isHardLevel){
+            if (isHardLevel)
+            {
                 trajectoryPrediction.Clear();
-                Debug.Log(hit2.collider.name);
+
+                LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
+                if (crystal != null)
+                {
+                    crystal.Calltolight();
+                }
             }
-            else {
+            else
+            {
+                lineRenderer.SetPosition(0, origin);
+                lineRenderer.SetPosition(1, hit2.point);
 
-            endPoint2 = hit2.point; 
-
-            lineRenderer.SetPosition(0, origin);
-            lineRenderer.SetPosition(1, endPoint2);
-
-                // on déclenche la prédiction si ce faisceau touche quelque chose 
-            trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
+                trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
             }
         }
         else
         {
-            endPoint2 = origin + direction * 10f; 
-    
+            if (!isHardLevel)
+            {
+                trajectoryPrediction.Clear();
+            }
         }
-
-
     }
+
 
 
 
