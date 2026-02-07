@@ -11,18 +11,22 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [Header("Ground Check (Feet BoxCast)")]
-    [SerializeField] private BoxCollider2D feetBox;          // BoxCollider2D aplati sous les pieds
+    [SerializeField] private BoxCollider2D feetBox;          
     [SerializeField] private float groundCastDistance = 0.05f;
 
-    [Header("Better Jump")]
-    [SerializeField] private float fallMultiplier = 3f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
+    [Header("Better Fall")]
+    [SerializeField] private float fallMultiplier = 2f; // 1.5–2.5 conseillé
+
+    [Header("Anti Wall-Stick")]
+    [SerializeField] private Transform wallCheck;           // point au niveau du torse
+    [SerializeField] private float wallCheckDistance = 0.08f;
+    [SerializeField] private LayerMask wallLayer;           // souvent = groundLayer
+    [SerializeField] private float airWallPushDampen = 0.1f; // 0 = stop net, 0.1 = léger push
 
     private Rigidbody2D body;
     private Animator animator;
     private SpriteRenderer sr;
 
-    // input cache
     private float x;
     private bool isRunning;
     private bool jumpPressed;
@@ -32,21 +36,20 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
-
-        // optionnel mais conseillé
         body.freezeRotation = true;
+
+        // si tu ne veux pas gérer 2 layers, tu peux faire:
+        // wallLayer = groundLayer; (mais wallLayer doit être assigné dans l'inspecteur si tu fais ça pas)
     }
 
     private void Update()
     {
-        // Inputs
         x = Input.GetAxisRaw("Horizontal");
         isRunning = Input.GetKey(KeyCode.LeftShift);
 
         if (Input.GetKeyDown(KeyCode.Space))
             jumpPressed = true;
 
-        // Anim + Flip (ok en Update)
         if (x != 0) sr.flipX = x < 0;
 
         float animSpeed = 0f;
@@ -61,27 +64,41 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
         animator.SetBool("IsGrounded", isGrounded);
 
-        // Horizontal move
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
+
+        // applique le mouvement horizontal
         body.linearVelocity = new Vector2(x * currentSpeed, body.linearVelocity.y);
 
-        // Jump
+        // jump
         if (jumpPressed && isGrounded)
         {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
             animator.SetTrigger("Jump");
         }
         jumpPressed = false;
 
-        // Better jump feel
-        if (body.linearVelocity.y < 0)
+        // chute plus "snappy"
+        if (body.linearVelocity.y < 0f)
         {
             body.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
         }
-        else if (body.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
+
+        // anti wall-stick (si en l'air et collé à un mur, on réduit fortement la vitesse X)
+        if (!isGrounded && IsTouchingWall() && body.linearVelocity.y <= 0f)
         {
-            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1f) * Time.fixedDeltaTime;
+            body.linearVelocity = new Vector2(body.linearVelocity.x * airWallPushDampen, body.linearVelocity.y);
         }
+    }
+
+    private bool IsTouchingWall()
+    {
+        if (!wallCheck) return false;
+
+        RaycastHit2D right = Physics2D.Raycast(wallCheck.position, Vector2.right, wallCheckDistance, wallLayer);
+        RaycastHit2D left  = Physics2D.Raycast(wallCheck.position, Vector2.left,  wallCheckDistance, wallLayer);
+
+        return right.collider != null || left.collider != null;
     }
 
     private bool IsGrounded()
@@ -102,10 +119,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (!feetBox) return;
+        // feet cast
+        if (feetBox)
+        {
+            Gizmos.color = Color.yellow;
+            Vector3 center = feetBox.bounds.center + Vector3.down * groundCastDistance;
+            Gizmos.DrawWireCube(center, feetBox.bounds.size);
+        }
 
-        Gizmos.color = Color.yellow;
-        Vector3 center = feetBox.bounds.center + Vector3.down * groundCastDistance;
-        Gizmos.DrawWireCube(center, feetBox.bounds.size);
+        // wall rays
+        if (wallCheck)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * wallCheckDistance);
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.left * wallCheckDistance);
+        }
     }
 }
