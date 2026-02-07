@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 144645362}
   - component: {fileID: 144645363}
   m_Layer: 0
-  m_Name: Beam
+  m_Name: Beam (line rend)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 7.92, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.5
@@ -389,7 +389,7 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &263705158
@@ -615,6 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7090d44141544c0a95810e5eb287a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faiseau: {fileID: 320632243}
+  lightBeam: {fileID: 320632242}
+  maxDistance: 10
 --- !u!1 &320632242
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +631,7 @@ GameObject:
   - component: {fileID: 320632245}
   - component: {fileID: 320632244}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Faiseau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1090,7 +1093,7 @@ GameObject:
   - component: {fileID: 1613803425}
   - component: {fileID: 1613803426}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Aim Cristal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

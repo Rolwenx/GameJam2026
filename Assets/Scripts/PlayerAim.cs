@@ -3,16 +3,29 @@ using UnityEngine;
 public class PlayerAim : MonoBehaviour
 {
     private Transform aimTransform;
+    public Transform faiseau;
+    [SerializeField] private GameObject lightBeam;
+    private LineRenderer lineRenderer;
+    [SerializeField] private float maxDistance = 10f;
+
+    
+
 
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
+        if (lightBeam != null)
+        {
+            lineRenderer = lightBeam.GetComponentInChildren<LineRenderer>();
+            lightBeam.SetActive(false);
+        }
     }
 
 
     private void Update()
     {
         HandleAiming();
+        HandleBeam();
     }
 
     private void HandleAiming()
@@ -21,6 +34,44 @@ public class PlayerAim : MonoBehaviour
         Vector3 aimDirection = (mousePos - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0,0,angle);
+    }
+
+    private void HandleBeam()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (!lightBeam.activeSelf)
+                lightBeam.SetActive(true);
+            UpdateLineRenderer();
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            lightBeam.SetActive(false);
+        }
+    }
+
+    private void UpdateLineRenderer()
+    {
+        Vector3 origin = faiseau.position;
+        Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, maxDistance);
+
+        Vector3 endPoint;
+
+        if (hit.collider != null)
+        {
+            endPoint = hit.point;
+        }
+        else
+        {
+            endPoint = origin + direction * maxDistance;
+        }
+
+        // DRAW LINE RENDERER
+        lineRenderer.SetPosition(0, origin);
+        lineRenderer.SetPosition(1, endPoint);
     }
 
 
