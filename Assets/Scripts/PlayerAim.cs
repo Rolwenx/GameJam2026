@@ -75,8 +75,9 @@ public class PlayerAim : MonoBehaviour
             if (!isHardLevel)
             {
                 trajectoryPrediction.Clear();
+                lightBeam.SetActive(false);
             }
-            lightBeam.SetActive(false);
+
             return;
         }
         else
@@ -85,20 +86,25 @@ public class PlayerAim : MonoBehaviour
             Vector3 endPoint = hit.point;
             lineRenderer.SetPosition(0, origin);
             lineRenderer.SetPosition(1, endPoint);
+
         }
 
-        if (!isHardLevel)
-            {
-                RaycastHit2D hit2 = Physics2D.Raycast(
-                    origin,
-                    direction,
-                    Mathf.Infinity,
-                    trajectoryMask
-                );
+        RaycastHit2D hit2 = Physics2D.Raycast(
+            origin,
+            direction,
+            Mathf.Infinity,
+            trajectoryMask
+        );
 
-                Vector3 endPoint2;
-         if (hit2.collider != null)
+        Vector3 endPoint2;
+        if (hit2.collider != null)
         {
+            if(isHardLevel){
+                trajectoryPrediction.Clear();
+                Debug.Log(hit2.collider.name);
+            }
+            else {
+
             endPoint2 = hit2.point; 
 
             lineRenderer.SetPosition(0, origin);
@@ -106,18 +112,15 @@ public class PlayerAim : MonoBehaviour
 
                 // on déclenche la prédiction si ce faisceau touche quelque chose 
             trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
+            }
         }
         else
         {
             endPoint2 = origin + direction * 10f; 
     
         }
-            }
-
-        
 
 
-    
     }
 
 
