@@ -8,70 +8,131 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 8f;
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private float groundRadius = 0.15f;
     [SerializeField] private LayerMask groundLayer;
 
-    [Header("Better Jump")]
-    [SerializeField] private float fallMultiplier = 3f;
-    [SerializeField] private float lowJumpMultiplier = 2f;
+    [Header("Ground Check (Feet BoxCast)")]
+    [SerializeField] private BoxCollider2D feetBox;          
+    [SerializeField] private float groundCastDistance = 0.05f;
+
+    [Header("Better Fall")]
+    [SerializeField] private float fallMultiplier = 2f; // 1.5–2.5 conseillé
+
+    [Header("Anti Wall-Stick")]
+    [SerializeField] private Transform wallCheck;           // point au niveau du torse
+    [SerializeField] private float wallCheckDistance = 0.08f;
+    [SerializeField] private LayerMask wallLayer;           // souvent = groundLayer
+    [SerializeField] private float airWallPushDampen = 0.1f; // 0 = stop net, 0.1 = léger push
 
     private Rigidbody2D body;
     private Animator animator;
     private SpriteRenderer sr;
+
+    private float x;
+    private bool isRunning;
+    private bool jumpPressed;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        body.freezeRotation = true;
+
+        // si tu ne veux pas gérer 2 layers, tu peux faire:
+        // wallLayer = groundLayer; (mais wallLayer doit être assigné dans l'inspecteur si tu fais ça pas)
     }
 
     private void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        x = Input.GetAxisRaw("Horizontal");
+        isRunning = Input.GetKey(KeyCode.LeftShift);
 
-        bool isGrounded = Physics2D.OverlapCircle(
-            groundCheck.position, groundRadius, groundLayer);
+        if (Input.GetKeyDown(KeyCode.Space))
+            jumpPressed = true;
 
-        animator.SetBool("IsGrounded", isGrounded);
-
-        // Flip
         if (x != 0) sr.flipX = x < 0;
 
-        // Blend Tree
         float animSpeed = 0f;
         if (Mathf.Abs(x) > 0.01f)
             animSpeed = isRunning ? 1f : 0.5f;
 
         animator.SetFloat("Speed", animSpeed);
+    }
 
-        // Jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+    private void FixedUpdate()
+    {
+        bool isGrounded = IsGrounded();
+        animator.SetBool("IsGrounded", isGrounded);
+
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
+
+        // applique le mouvement horizontal
+        body.linearVelocity = new Vector2(x * currentSpeed, body.linearVelocity.y);
+
+        // jump
+        if (jumpPressed && isGrounded)
         {
+            body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
             animator.SetTrigger("Jump");
         }
+        jumpPressed = false;
 
-        // Horizontal move
-        float currentSpeed = isRunning ? runSpeed : walkSpeed;
-        body.linearVelocity = new Vector2(x * currentSpeed, body.linearVelocity.y);
+        // chute plus "snappy"
+        if (body.linearVelocity.y < 0f)
+        {
+            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1f) * Time.fixedDeltaTime;
+        }
 
-        // 🔥 BETTER JUMP FEEL
-        if (body.linearVelocity.y < 0)
+        // anti wall-stick (si en l'air et collé à un mur, on réduit fortement la vitesse X)
+        if (!isGrounded && IsTouchingWall() && body.linearVelocity.y <= 0f)
         {
-            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            body.linearVelocity = new Vector2(body.linearVelocity.x * airWallPushDampen, body.linearVelocity.y);
         }
-        else if (body.linearVelocity.y > 0 && !Input.GetKey(KeyCode.Space))
-        {
-            body.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-        }
+    }
+
+    private bool IsTouchingWall()
+    {
+        if (!wallCheck) return false;
+
+        RaycastHit2D right = Physics2D.Raycast(wallCheck.position, Vector2.right, wallCheckDistance, wallLayer);
+        RaycastHit2D left  = Physics2D.Raycast(wallCheck.position, Vector2.left,  wallCheckDistance, wallLayer);
+
+        return right.collider != null || left.collider != null;
+    }
+
+    private bool IsGrounded()
+    {
+        if (!feetBox) return false;
+
+        RaycastHit2D hit = Physics2D.BoxCast(
+            feetBox.bounds.center,
+            feetBox.bounds.size,
+            0f,
+            Vector2.down,
+            groundCastDistance,
+            groundLayer
+        );
+
+        return hit.collider != null;
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (groundCheck == null) return;
-        Gizmos.DrawWireSphere(groundCheck.position, groundRadius);
+        // feet cast
+        if (feetBox)
+        {
+            Gizmos.color = Color.yellow;
+            Vector3 center = feetBox.bounds.center + Vector3.down * groundCastDistance;
+            Gizmos.DrawWireCube(center, feetBox.bounds.size);
+        }
+
+        // wall rays
+        if (wallCheck)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.right * wallCheckDistance);
+            Gizmos.DrawLine(wallCheck.position, wallCheck.position + Vector3.left * wallCheckDistance);
+        }
     }
 }
