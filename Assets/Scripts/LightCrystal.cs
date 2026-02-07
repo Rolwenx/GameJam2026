@@ -25,32 +25,63 @@ public class LightCrystal : MonoBehaviour
     private GameObject explosionEffect;
     private Coroutine routine;
 
+    private GameObject[] cristalChildren;
+
     private void Awake()
     {
-        light2D = transform.GetChild(0).GetComponent<Light2D>();
-        explosionEffect = gameObject.transform.GetChild(1).gameObject;
-        anim = explosionEffect.GetComponent<Animator>();
-        explosionEffect.SetActive(false); // désactive l'anim au départ pour économiser les ressources (il n'est pas visible tant que le cristal est éteint)
+        cristalChildren = new GameObject[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            cristalChildren[i] = transform.GetChild(i).gameObject;
+        }
 
-        if (light2D == null) Debug.LogError("LightCrystal: Light2D manquant sur l'enfant 0.");
-        if (anim == null) Debug.LogError("LightCrystal: Animator manquant sur l'enfant 1.");
+        light2D = cristalChildren[0].GetComponent<Light2D>();
+        light2D.intensity = offIntensity;
+        
 
-        if (light2D != null) light2D.intensity = offIntensity;
 
-        if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
     }
 
     public void Calltolight(bool hardLevel)
     {
+
+        
         gameObject.tag = "Lit";
         Debug.Log("LightCrystal: Calltolight() appelé. HardLevel = " + hardLevel);  
         if(hardLevel){
-            if (light2D == null || anim == null) return;
+      
+            explosionEffect = cristalChildren[1].gameObject;
+            anim = explosionEffect.GetComponent<Animator>();
+            explosionEffect.SetActive(false); // désactive l'anim au départ pour économiser les
+
+            if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
+                if (light2D == null || anim == null) return;
 
             if (routine != null) StopCoroutine(routine);
             routine = StartCoroutine(Sequence());
         }
+        else
+        {
+            if (routine != null) StopCoroutine(routine);
+            routine = StartCoroutine(SequenceEasyLevel());
+        }
 
+    }
+
+    private IEnumerator SequenceEasyLevel()
+    {
+        // 1) allume
+        yield return FadeIntensity(offIntensity, onIntensity, fadeDuration);
+
+        // 2) reste allumé
+        yield return new WaitForSeconds(stayLitTime);
+
+        // 3) éteint
+        yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
+        gameObject.tag = "Unlit";
+
+
+        routine = null;
     }
 
     private IEnumerator Sequence()

@@ -3,6 +3,7 @@ using UnityEngine;
 public class Level1Manager : MonoBehaviour
 {
     public DialogueUI dialogueUI;
+    private int Cristal1HasBeenLit = 0;
 
     private string[] dialoguesFollower =
     {
@@ -56,5 +57,19 @@ public class Level1Manager : MonoBehaviour
 
         // Le jeu reprend ici
         Time.timeScale = 1f;
+
     }
+
+    /// faire un truc dans le update en mode if crystal called "Cristal1" gets the tag "Lit" (for 5s),
+    /// le compteur Cristal1HasBeenLit +1
+    /// Si Cristal1 repasse en tag "Unlit" ensuite, le compteur Cristal1HasBeenLit +1 
+    /// Si Cristal1HasBeenLit = 2, ca veut dire que le joueur a fait le tutoriel.
+    /// On met pause au jeu 
+    /// Indication dialogue revient : "On dirait que les cristaux ne sont pas assez puissants pour tenir longtemps"
+    /// "Essaie peut-être de les lier avec un autre cristal pour voir.
+    /// Jeu reprend (et on verra)
+    /// 
+    //
+    /// 
+
 }

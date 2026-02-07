@@ -103,6 +103,16 @@ public class PlayerAim : MonoBehaviour
             }
             else
             {
+                // si l'élement cristal a un tag lit, on passe
+                if (!hit2.collider.CompareTag("Lit"))
+                {
+                    LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
+                    if (crystal != null)
+                    {
+                        crystal.Calltolight(isHardLevel);
+                    }
+                }
+
                 lineRenderer.SetPosition(0, origin);
                 lineRenderer.SetPosition(1, hit2.point);
 
