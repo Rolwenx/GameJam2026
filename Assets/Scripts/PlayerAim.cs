@@ -96,10 +96,10 @@ public class PlayerAim : MonoBehaviour
                     LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
                     if (crystal != null)
                     {
-                        crystal.Calltolight();
+                        crystal.Calltolight(isHardLevel);
                     }
                 }
-                
+
             }
             else
             {

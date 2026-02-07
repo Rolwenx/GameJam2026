@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
 
 public class LightCrystal : MonoBehaviour
 {
@@ -8,47 +9,74 @@ public class LightCrystal : MonoBehaviour
     [SerializeField] private float offIntensity = 0f;
 
     [Header("Timings")]
-    [SerializeField] private float fadeDuration = 0.12f;   // fade rapide
-    [SerializeField] private float stayLitTime = 3f;       // reste allumé
+    [SerializeField] private float fadeDuration = 0.12f;
+    [SerializeField] private float stayLitTime = 3f;
+    [SerializeField] private float delayBeforeExplode = 1.5f; // 1–2 sec
 
-    // Référence au composant de lumière (URP 2D)
-    private UnityEngine.Rendering.Universal.Light2D light2D;
+    [Header("Explosion")]
+    [SerializeField] private string explodeTriggerName = "Explode";
 
+    [Header("Fall")]
+    [SerializeField] private float fallGravityScale = 1f;
+    [SerializeField] private Collider2D crystalCollider;
+
+    private Light2D light2D;
+    private Animator anim;
+    private GameObject explosionEffect;
     private Coroutine routine;
 
     private void Awake()
     {
-        // 1er enfant = ton light
-        Transform light = transform.GetChild(0);
-        light2D = light.GetComponent<UnityEngine.Rendering.Universal.Light2D>();
+        light2D = transform.GetChild(0).GetComponent<Light2D>();
+        explosionEffect = gameObject.transform.GetChild(1).gameObject;
+        anim = explosionEffect.GetComponent<Animator>();
+        explosionEffect.SetActive(false); // désactive l'anim au départ pour économiser les ressources (il n'est pas visible tant que le cristal est éteint)
 
-        if (light2D == null)
-            Debug.LogError("LightCrystal: Aucun composant Light2D trouvé sur le 1er enfant.");
+        if (light2D == null) Debug.LogError("LightCrystal: Light2D manquant sur l'enfant 0.");
+        if (anim == null) Debug.LogError("LightCrystal: Animator manquant sur l'enfant 1.");
 
-        // On part éteint
         if (light2D != null) light2D.intensity = offIntensity;
+
+        if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
     }
 
-    public void Calltolight()
+    public void Calltolight(bool hardLevel)
     {
-        gameObject.tag = "Lit"; // change le tag pour que le player puisse détecter que c'est allumé
-        if (light2D == null) return;
+        gameObject.tag = "Lit";
+        Debug.Log("LightCrystal: Calltolight() appelé. HardLevel = " + hardLevel);  
+        if(hardLevel){
+            if (light2D == null || anim == null) return;
 
-        // Evite de superposer plusieurs coroutines
-        if (routine != null) StopCoroutine(routine);
-        routine = StartCoroutine(LightUp());
+            if (routine != null) StopCoroutine(routine);
+            routine = StartCoroutine(Sequence());
+        }
+
     }
 
-    private IEnumerator LightUp()
+    private IEnumerator Sequence()
     {
-        // Fade in -> intensity 2
+        // 1) allume
         yield return FadeIntensity(offIntensity, onIntensity, fadeDuration);
 
-        // Reste allumé
+        // 2) reste allumé
         yield return new WaitForSeconds(stayLitTime);
 
-        // Fade out -> intensity 0
+        // 3) éteint
         yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
+
+        // 4) délai avant explosion
+        yield return new WaitForSeconds(delayBeforeExplode);
+        explosionEffect.SetActive(true); // au cas où l'anim est désactivée pour économiser les ressources pendant qu'elle est éteinte
+        // 5) explosion
+        anim.ResetTrigger(explodeTriggerName);
+        anim.SetTrigger(explodeTriggerName);
+
+        // attendre 0,04 secondes (durée de l'explosion) avant de passer à la suite
+        yield return new WaitForSeconds(0.4f);
+
+        // 7) après l'explosion -> il tombe
+        explosionEffect.SetActive(false); 
+        StartFalling();
 
         routine = null;
     }
@@ -63,7 +91,37 @@ public class LightCrystal : MonoBehaviour
             light2D.intensity = Mathf.Lerp(from, to, k);
             yield return null;
         }
-
         light2D.intensity = to;
+    }
+
+    private void StartFalling()
+    {
+        if (crystalCollider != null)
+            crystalCollider.enabled = false;
+
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        BoxCollider2D bc = GetComponent<BoxCollider2D>();
+        if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
+        if (bc == null) bc = gameObject.AddComponent<BoxCollider2D>();
+
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gravityScale = fallGravityScale;
+        rb.freezeRotation = true;
+        // exclure le cristal des collision du layer CameraBound
+
+        int cameraBoundLayer = LayerMask.NameToLayer("CameraBound");
+        Collider2D[] bounds = FindObjectsOfType<Collider2D>();
+
+        foreach (var col in bounds)
+        {
+            if (col.gameObject.layer == cameraBoundLayer)
+            {
+                Physics2D.IgnoreCollision(bc, col, true);
+            }
+        }
+
+
+        bc.isTrigger = false; // s'assure que le cristal peut interagir avec le sol après être tombé
+
     }
 }
