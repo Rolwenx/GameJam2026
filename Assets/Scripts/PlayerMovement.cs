@@ -30,19 +30,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // Input
+        // movement
         xInput = Input.GetAxisRaw("Horizontal"); // -1, 0, 1
         if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
             jumpPressed = true;
 
-        // Ground check
+        // check if char on ground
         isGrounded = Physics2D.OverlapCircle(isItGround.position, groundCheckRadius, groundLayer);
 
         // Flip
         if (xInput != 0)
             sr.flipX = xInput < 0;
 
-        // Animator params
         anim.SetFloat("Speed", Mathf.Abs(xInput));
         anim.SetBool("IsGrounded", isGrounded);
     }
