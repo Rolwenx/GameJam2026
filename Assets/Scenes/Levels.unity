@@ -828,7 +828,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!212 &258305127
 SpriteRenderer:
@@ -969,7 +969,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!61 &300075818
 BoxCollider2D:
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!212 &747524595
 SpriteRenderer:
@@ -4352,7 +4352,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!212 &1278144445
 SpriteRenderer:
@@ -22147,7 +22147,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!212 &1575167918
 SpriteRenderer:
@@ -22830,7 +22830,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!61 &1664748437
 BoxCollider2D:
@@ -45781,7 +45781,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!212 &1832512976
 SpriteRenderer:
@@ -45891,7 +45891,7 @@ MonoBehaviour:
   stayLitTime: 3
   delayBeforeExplode: 1.5
   fallGravityScale: 1
-  isItTutorial: 1
+  isItTutorial: 0
   hasTutorialbeenDone: 0
 --- !u!61 &1842275977
 BoxCollider2D:

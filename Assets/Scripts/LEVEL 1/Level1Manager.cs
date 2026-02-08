@@ -27,6 +27,12 @@ public class Level1Manager : MonoBehaviour
         "Bibi : Essaie peut-être de les lier avec un autre cristal pour voir. Il y en a un tout devant."
     };
 
+    private string[] dialoguesAfterEnchainement =
+    {
+        "Bibi : Trop top. les cristaux sont maintenant allumés !",
+        "Bibi : Bon continuons."
+    };
+
     private int index = 0;
     private bool followerFinished = false;
     private bool crystalDialogueActive = false;
@@ -80,11 +86,14 @@ public class Level1Manager : MonoBehaviour
     private void OnEnable()
     {
         LightCrystal.OnTutorialCrystalFinished += OnCrystalTutorialDone;
+        LightCrystal.AfterEnchainementCristal += OnAfterEnchainementCristal;
+
     }
 
     private void OnDisable()
     {
         LightCrystal.OnTutorialCrystalFinished -= OnCrystalTutorialDone;
+        LightCrystal.AfterEnchainementCristal -= OnAfterEnchainementCristal;
     }
 
     private void OnCrystalTutorialDone()
@@ -97,7 +106,18 @@ public class Level1Manager : MonoBehaviour
 
         crystalDialogueActive = true;
         index = 0;
-}
+    }
+
+    public void OnAfterEnchainementCristal(){
+        Time.timeScale = 0f;
+
+        dialogueUI.HideIndication();
+        bibi.ShowNearPlayer(player); // 👈 réapparition
+        dialogueUI.ShowFollower(dialoguesAfterEnchainement[0]);
+
+        crystalDialogueActive = true;
+        index = 0;
+    }
 
     void AdvanceCrystalDialogue()
 {

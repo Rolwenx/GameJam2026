@@ -39,7 +39,7 @@ public class OuverturePorte : MonoBehaviour
             if (crystal != null)
             {
                 crystal.CancelAll();
-                crystal.enabled = false;
+                //crystal.enabled = false;
             }
 
             foreach (Transform child in gros)
