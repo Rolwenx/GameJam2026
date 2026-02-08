@@ -98,7 +98,7 @@ public class PlayerAim : MonoBehaviour
         if (hit2.collider != null)
         {
             historyHit.Add(hit2.collider);
-            if (hit2.collider.name.Contains("Cristal"))
+            if (hit2.collider.name.Contains("CristalsToTake"))
             {
                 trajectoryPrediction.Clear();
                 bool petitCristal = true;
