@@ -33,6 +33,9 @@ public class PlayerAim : MonoBehaviour
 
     private void Update()
     {
+        if (Time.timeScale == 0f)
+            return;
+
         HandleAiming();
         Debug.Log("HistoryHit : " + string.Join(", ", historyHit.Select(c => c.name)));
         HandleBeam();
