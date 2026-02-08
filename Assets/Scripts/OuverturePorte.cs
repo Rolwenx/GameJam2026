@@ -22,9 +22,7 @@ public class OuverturePorte : MonoBehaviour
         if (opened || porte == null) return;
 
         HashSet<Transform> neededCristaux = GetLitGrosCristaux(); // cristaux nécessaire pour ouvrir la porte
-        Debug.Log("LitSet : " + string.Join(", ", neededCristaux.Select(t => t.name)));
         HashSet<Transform> touchedSet = GetTouchedGrosCristaux(); // cristaux qui ont été touchés par le rayon du joueur
-        Debug.Log("TouchedSet : " + string.Join(", ", touchedSet.Select(t => t.name)));
 
         if (neededCristaux.Count == 0 || touchedSet.Count == 0) return;
 
@@ -36,16 +34,18 @@ public class OuverturePorte : MonoBehaviour
         foreach (Transform gros in neededCristaux)
         {
             LightCrystal crystal = gros.GetComponent<LightCrystal>();
+            Debug.Log($"Sur {gros.name} -> LightCrystal trouvé ? {gros.GetComponentInChildren<LightCrystal>(true) != null}");
+
             if (crystal != null)
             {
                 crystal.CancelAll();
-                //crystal.enabled = false;
+                crystal.enabled = false;
             }
 
             foreach (Transform child in gros)
             {
                 Light2D light2D = child.GetComponent<Light2D>();
-                if (light2D != null) light2D.pointLightOuterRadius = 2f;
+                if (light2D != null) light2D.intensity = 2f;
             }
         }
     }

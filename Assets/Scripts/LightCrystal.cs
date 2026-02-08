@@ -28,6 +28,8 @@ public class LightCrystal : MonoBehaviour
     public static event Action OnTutorialCrystalFinished;
     public static event Action AfterEnchainementCristal;
 
+    private bool lockedOn = false; // pour éviter que le cristal soit réactivé après avoir été désactivé par la porte
+
     private GameObject porte;
 
 
@@ -40,10 +42,7 @@ public class LightCrystal : MonoBehaviour
         }
 
         light2D = cristalChildren[0].GetComponent<Light2D>();
-        light2D.pointLightOuterRadius = offIntensity;
-
-
-        // chercher le player et son PlayerAim
+        light2D.intensity = offIntensity;
 
 
 
@@ -52,9 +51,8 @@ public class LightCrystal : MonoBehaviour
     public void Calltolight(bool petitCristal)
     {
 
-        
+        if (lockedOn) return;
         gameObject.tag = "Lit";
-        Debug.Log("LightCrystal: Calltolight() appelé. PetitCristal = " + petitCristal);  
         if(petitCristal){
       
             if (crystalCollider == null) crystalCollider = GetComponent<Collider2D>();
@@ -133,10 +131,10 @@ public class LightCrystal : MonoBehaviour
         {
             t += Time.deltaTime;
             float k = duration <= 0f ? 1f : (t / duration);
-            light2D.pointLightOuterRadius = Mathf.Lerp(from, to, k);
+            light2D.intensity = Mathf.Lerp(from, to, k);
             yield return null;
         }
-        light2D.pointLightOuterRadius = to;
+        light2D.intensity = to;
     }
 
 
@@ -166,7 +164,6 @@ public class LightCrystal : MonoBehaviour
             }
         }
 
-        // on lock les mouvements sur l'axe X
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;    
         bc.isTrigger = false; // s'assure que le cristal peut interagir avec le sol après être tombé
 
@@ -174,11 +171,10 @@ public class LightCrystal : MonoBehaviour
 
     public void CancelAll()
     {
-        if (routine != null){
-            StopCoroutine(routine); 
-            routine = null;               // si tu utilises un champ Coroutine routine
-            if (light2D != null) light2D.pointLightOuterRadius = 0f;  // optionnel : éteint
-        }
+        lockedOn = true;
+        StopAllCoroutines();
+        if (light2D != null) light2D.intensity = onIntensity; 
+
     }
 
 }
