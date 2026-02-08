@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class LightCrystal : MonoBehaviour
 {
     [Header("Light Settings")]
-    [SerializeField] private float onIntensity = 2f;
+    [SerializeField] private float onIntensity = 5f;
     [SerializeField] private float offIntensity = 0f;
 
     [Header("Timings")]
