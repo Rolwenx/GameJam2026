@@ -4,15 +4,6 @@ public class PorteMa : MonoBehaviour
 {
     private int currentIndex = 0;
 
-    private void Start()
-    {
-        // Active uniquement le premier enfant
-        for (int i = 0; i < transform.childCount; i++)
-            transform.GetChild(i).gameObject.SetActive(i == 0);
-
-        currentIndex = 0;
-    }
-
     private void Update()
     {
         if (currentIndex >= transform.childCount) return;
