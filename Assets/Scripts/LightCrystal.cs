@@ -30,6 +30,7 @@ public class LightCrystal : MonoBehaviour
 
     private GameObject porte;
 
+
     private void Awake()
     {
         cristalChildren = new GameObject[transform.childCount];
@@ -64,11 +65,12 @@ public class LightCrystal : MonoBehaviour
         }
         else if (isItTutorial == true)
         {
-            if (easy_routine != null) StopCoroutine(easy_routine);
-            easy_routine = StartCoroutine(SequenceEasyLevel());
+            if (routine != null) StopCoroutine(routine);
+            routine = StartCoroutine(SequenceEasyLevel());
         }
         else {
             routine = StartCoroutine(Sequence());
+            gameObject.tag = "Unlit";
         }
 
     }
@@ -77,28 +79,18 @@ public class LightCrystal : MonoBehaviour
     {
         yield return FadeIntensity(offIntensity, onIntensity, fadeDuration);
         porte = GameObject.Find("PorteInvisbleContainer"); 
+        yield return new WaitForSeconds(stayLitTime);
+        yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
            
         OuverturePorte OuvertePorte = porte.GetComponent<OuverturePorte>();
 
         if (isItTutorial && !hasTutorialbeenDone)
         {
             hasTutorialbeenDone = true;
-            if (OuvertePorte.opened == false)
-            {
-                        yield return new WaitForSeconds(stayLitTime);
-                 yield return FadeIntensity(onIntensity, offIntensity, fadeDuration);
-                Debug.Log("hi");
 
-                 OnTutorialCrystalFinished?.Invoke();
-            }
-            else {
-
-                AfterEnchainementCristal?.Invoke();
-                Debug.Log("AfterEnchainementCristal event invoked");
-            }
-            
+            OnTutorialCrystalFinished?.Invoke();
         }
-        easy_routine = null;
+        routine = null;
         gameObject.tag = "Unlit";
     }
 
@@ -182,7 +174,7 @@ public class LightCrystal : MonoBehaviour
     public void CancelAll()
     {
         if (routine != null){
-            StopCoroutine(routine);          // stop toutes les coroutines de CE script
+            StopCoroutine(routine); 
             routine = null;               // si tu utilises un champ Coroutine routine
             if (light2D != null) light2D.intensity = 0f;  // optionnel : éteint
         }
