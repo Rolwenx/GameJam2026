@@ -40,7 +40,7 @@ public class LightCrystal : MonoBehaviour
         }
 
         light2D = cristalChildren[0].GetComponent<Light2D>();
-        light2D.intensity = offIntensity;
+        light2D.pointLightOuterRadius = offIntensity;
 
 
         // chercher le player et son PlayerAim
@@ -133,11 +133,12 @@ public class LightCrystal : MonoBehaviour
         {
             t += Time.deltaTime;
             float k = duration <= 0f ? 1f : (t / duration);
-            light2D.intensity = Mathf.Lerp(from, to, k);
+            light2D.pointLightOuterRadius = Mathf.Lerp(from, to, k);
             yield return null;
         }
-        light2D.intensity = to;
+        light2D.pointLightOuterRadius = to;
     }
+
 
     private void StartFalling()
     {
@@ -176,7 +177,7 @@ public class LightCrystal : MonoBehaviour
         if (routine != null){
             StopCoroutine(routine); 
             routine = null;               // si tu utilises un champ Coroutine routine
-            if (light2D != null) light2D.intensity = 0f;  // optionnel : éteint
+            if (light2D != null) light2D.pointLightOuterRadius = 0f;  // optionnel : éteint
         }
     }
 
