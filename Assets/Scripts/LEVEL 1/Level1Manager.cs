@@ -9,6 +9,9 @@ public class Level1Manager : MonoBehaviour
 
     private int Cristal1HasBeenLit = 0;
 
+    private GameObject porte;
+        private bool enchainementFinished = false;
+
     private string[] dialoguesFollower =
     {
         "Bibi : Wooow, j'arrive pas à y croire. On arrive à voir dans le noir ?",
@@ -36,6 +39,10 @@ public class Level1Manager : MonoBehaviour
     private int index = 0;
     private bool followerFinished = false;
     private bool crystalDialogueActive = false;
+    private bool anyTutorialMessageAlreadyShown = false;
+
+    private string[] currentDialogue = null;
+
 
     void Start()
     {
@@ -56,6 +63,17 @@ public class Level1Manager : MonoBehaviour
         {
             NextFollowerDialogue();
         }
+
+        porte = GameObject.Find("PorteInvisbleContainer"); 
+           
+        OuverturePorte OuvertePorte = porte.GetComponent<OuverturePorte>();
+
+        if (OuvertePorte.opened && enchainementFinished == false){
+            enchainementFinished = true;
+            OnAfterEnchainementCristal();
+        }
+
+
     }
 
     void NextFollowerDialogue()
@@ -86,54 +104,61 @@ public class Level1Manager : MonoBehaviour
     private void OnEnable()
     {
         LightCrystal.OnTutorialCrystalFinished += OnCrystalTutorialDone;
-        LightCrystal.AfterEnchainementCristal += OnAfterEnchainementCristal;
 
     }
 
     private void OnDisable()
     {
         LightCrystal.OnTutorialCrystalFinished -= OnCrystalTutorialDone;
-        LightCrystal.AfterEnchainementCristal -= OnAfterEnchainementCristal;
     }
 
     private void OnCrystalTutorialDone()
     {
+        if (anyTutorialMessageAlreadyShown) return;
         Time.timeScale = 0f;
 
         dialogueUI.HideIndication();
-        bibi.ShowNearPlayer(player); // 👈 réapparition
-        dialogueUI.ShowFollower(dialoguesAfterCrystal[0]);
+        bibi.ShowNearPlayer(player);
+
+        currentDialogue = dialoguesAfterCrystal;          // ✅
+        index = 0;                                        // ✅ (mets-le AVANT l’affichage)
+        dialogueUI.ShowFollower(currentDialogue[index]);  // ✅
 
         crystalDialogueActive = true;
-        index = 0;
+        anyTutorialMessageAlreadyShown = true;
     }
 
-    public void OnAfterEnchainementCristal(){
+    public void OnAfterEnchainementCristal()
+    {
         Time.timeScale = 0f;
 
         dialogueUI.HideIndication();
-        bibi.ShowNearPlayer(player); // 👈 réapparition
-        dialogueUI.ShowFollower(dialoguesAfterEnchainement[0]);
+        bibi.ShowNearPlayer(player);
+
+        currentDialogue = dialoguesAfterEnchainement;     // ✅
+        index = 0;                                        // ✅
+        dialogueUI.ShowFollower(currentDialogue[index]);  // ✅
 
         crystalDialogueActive = true;
-        index = 0;
     }
+
 
     void AdvanceCrystalDialogue()
-{
-    index++;
+    {
+        index++;
 
-    if (index >= dialoguesAfterCrystal.Length)
-    {
-        crystalDialogueActive = false;
-        dialogueUI.HideFollower();
-        bibi.Hide(); // 👈 disparaît
-        Time.timeScale = 1f;
+        if (currentDialogue == null || index >= currentDialogue.Length)
+        {
+            crystalDialogueActive = false;
+            dialogueUI.HideFollower();
+            bibi.Hide();
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            dialogueUI.ShowFollower(currentDialogue[index]);
+        }
     }
-    else
-    {
-        dialogueUI.ShowFollower(dialoguesAfterCrystal[index]);
-    }
-}
+
 
 }
