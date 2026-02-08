@@ -27,6 +27,7 @@ public class GoToLevel : MonoBehaviour
 
     void Update()
     {
+        // if player not in range, nothing happens
         if (!playerInRange) return;
 
         float distance = Vector2.Distance(player.position, transform.position);
@@ -67,12 +68,22 @@ public class GoToLevel : MonoBehaviour
 
     void UpdateText()
     {
-        bool previousCompleted = requiredPreviousLevel == 0 ||
-                                 PlayerPrefs.GetInt($"Level_{requiredPreviousLevel}_Completed", 0) == 1;
+        bool previousCompleted = false;
+        // if we're talking about level 1
+        if (requiredPreviousLevel == 0)
+        {
+            previousCompleted = true;
+        }
+        // if we're talking about other levels
+        else
+        {
+            previousCompleted = PlayerPrefs.GetInt("Level_" + requiredPreviousLevel + "_Completed", 0) == 1;
+        }
 
-        bool thisCompleted = PlayerPrefs.GetInt($"Level_{currentLevel}_Completed", 0) == 1;
-        int highScore = PlayerPrefs.GetInt($"Level_{currentLevel}_HighScore", 0);
+        bool thisCompleted = PlayerPrefs.GetInt("Level_" + currentLevel + "_Completed", 0) == 1;
+        //int highScore = PlayerPrefs.GetInt($"Level_"+ currentLevel+ "_HighScore", 0);
 
+        // if the previous level hasn't been completed
         if (!previousCompleted)
         {
             worldText.text =
@@ -80,17 +91,17 @@ public class GoToLevel : MonoBehaviour
             return;
         }
 
+        // if the previous level has been completed, the only thing left to do
+        // is either retry the level (if done) or play it
         if (thisCompleted)
         {
             worldText.text =
-                $"High Score: {highScore}\n" +
                 "Do you want to retry this level?\n" +
                 "Press E to play";
         }
         else
         {
             worldText.text =
-                $"High Score: {highScore}\n" +
                 "Do you want to play this level?\n" +
                 "Press E to go";
         }
@@ -98,8 +109,16 @@ public class GoToLevel : MonoBehaviour
 
     void TryEnterLevel()
     {
-        bool previousCompleted = requiredPreviousLevel == 0 ||
-                                 PlayerPrefs.GetInt($"Level_{requiredPreviousLevel}_Completed", 0) == 1;
+
+        bool previousCompleted = false;
+        if (requiredPreviousLevel == 0)
+        {
+            previousCompleted = true;
+        }
+        else
+        {
+            previousCompleted = PlayerPrefs.GetInt("Level_" + requiredPreviousLevel + "_Completed", 0) == 1;
+        }
 
         if (!previousCompleted) return;
 
