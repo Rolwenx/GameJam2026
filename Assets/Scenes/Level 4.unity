@@ -44325,6 +44325,7 @@ GameObject:
   - component: {fileID: 1672679483}
   - component: {fileID: 1672679489}
   - component: {fileID: 1672679490}
+  - component: {fileID: 1672679491}
   m_Layer: 3
   m_Name: MainChar (1)
   m_TagString: Player
@@ -44585,6 +44586,19 @@ MonoBehaviour:
   maxLight: 100
   currentLight: 100
   drainPerSecond: 5
+--- !u!114 &1672679491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672679481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb337208393f52d4e8c3b39666a35e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAim: {fileID: 1672679483}
 --- !u!1 &1678665275
 GameObject:
   m_ObjectHideFlags: 0

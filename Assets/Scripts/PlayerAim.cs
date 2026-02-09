@@ -15,7 +15,8 @@ public class PlayerAim : MonoBehaviour
     [Header("Prediction")]
     [SerializeField] private TrajectoryPrediction trajectoryPrediction;
     [SerializeField] private bool isHardLevel;
-    public List<Collider2D> historyHit = new List<Collider2D>();
+     public readonly List<Collider2D> historyHit = new List<Collider2D>();
+    private readonly List<Collider2D> frameHits = new List<Collider2D>();
 
     
 
@@ -65,84 +66,97 @@ public class PlayerAim : MonoBehaviour
     }
 
     private void UpdateLineRenderer()
+{
+    Vector3 origin = faiseau.position;
+    Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
+
+    RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, laserHitMask);
+
+    // ✅ on construit d'abord dans frameHits
+    frameHits.Clear();
+
+    float maxDist = Mathf.Infinity;
+
+    if (hit.collider == null)
     {
-        Vector3 origin = faiseau.position;
-        Vector3 direction = (GetMouseWorldPosition() - origin).normalized;
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, laserHitMask);
-
-        historyHit.Clear();
-
-        float maxDist = Mathf.Infinity;
-
-        if (hit.collider == null)
+        if (!isHardLevel)
         {
-            if (!isHardLevel)
+            trajectoryPrediction.Clear();
+            lightBeam.SetActive(false);
+        }
+
+        // ✅ publish vide
+        historyHit.Clear();
+        return;
+    }
+    else
+    {
+        lineRenderer.SetPosition(0, origin);
+        lineRenderer.SetPosition(1, hit.point);
+
+        maxDist = hit.distance;
+    }
+
+    RaycastHit2D hit2 = Physics2D.Raycast(origin, direction, maxDist, trajectoryMask);
+
+    if (hit2.collider != null)
+    {
+        // ✅ au lieu de historyHit.Add(...)
+        frameHits.Add(hit2.collider);
+
+        if (hit2.collider.name.Contains("CristalsToTake"))
+        {
+            trajectoryPrediction.Clear();
+            bool petitCristal = true;
+
+            if (!hit2.collider.CompareTag("Lit"))
             {
-                trajectoryPrediction.Clear();
-                lightBeam.SetActive(false);
+                LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
+                if (crystal != null)
+                {
+                    crystal.Calltolight(petitCristal);
+                }
             }
-            return;
         }
         else
         {
+            if (!hit2.collider.CompareTag("Lit"))
+            {
+                LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
+                if (crystal != null)
+                {
+                    crystal.Calltolight(isHardLevel);
+                }
+            }
 
             lineRenderer.SetPosition(0, origin);
-            lineRenderer.SetPosition(1, hit.point);
+            lineRenderer.SetPosition(1, hit2.point);
 
-            maxDist = hit.distance;
-        }
+            trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
 
-        RaycastHit2D hit2 = Physics2D.Raycast(origin, direction, maxDist, trajectoryMask);
-
-        if (hit2.collider != null)
-        {
-            historyHit.Add(hit2.collider);
-            if (hit2.collider.name.Contains("CristalsToTake"))
+            foreach (var h in trajectoryPrediction.History)
             {
-                trajectoryPrediction.Clear();
-                bool petitCristal = true;
-                
-                // si l'élement cristal a un tag lit, on passe
-                if (!hit2.collider.CompareTag("Lit"))
-                {
-                    LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
-                    if (crystal != null)
-                    {
-                        crystal.Calltolight(petitCristal);
-                    }
-                }
-
-            }
-            else
-            {
-                // si l'élement cristal a un tag lit, on passe
-                if (!hit2.collider.CompareTag("Lit"))
-                {
-                    LightCrystal crystal = hit2.collider.GetComponent<LightCrystal>();
-                    if (crystal != null)
-                    {
-                        crystal.Calltolight(isHardLevel);
-                    }
-                }
-
-                lineRenderer.SetPosition(0, origin);
-                lineRenderer.SetPosition(1, hit2.point);
-
-                trajectoryPrediction.DrawFromHit(hit2.point, direction, hit2.normal);
-                foreach (var h in trajectoryPrediction.History)
-                    historyHit.Add(h.collider);
+                if (h.collider != null)
+                    frameHits.Add(h.collider);
             }
         }
-        else
-        {
-            if (!isHardLevel)
-            {
-                trajectoryPrediction.Clear();
-                historyHit.Clear();
-            }
-        }
+
+        // ✅ publish final à la fin
+        historyHit.Clear();
+        historyHit.AddRange(frameHits);
     }
+    else
+    {
+        if (!isHardLevel)
+        {
+            trajectoryPrediction.Clear();
+        }
+
+        // ✅ publish vide
+        historyHit.Clear();
+    }
+}
+
 
 
 
