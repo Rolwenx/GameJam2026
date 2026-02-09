@@ -177,7 +177,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!19719996 &19091395
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -694,6 +693,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solidMask:
+    m_Bits: 192
+  groundRay: 2
+  searchRadius: 1
+  searchSteps: 24
+  extraSkin: 0.01
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  lastSafePos: {x: 0, y: 0}
+  hasSafePos: 0
 --- !u!50 &19091399
 Rigidbody2D:
   serializedVersion: 5
@@ -811,7 +820,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!19719996 &21246651
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -1328,6 +1336,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solidMask:
+    m_Bits: 64
+  groundRay: 10
+  searchRadius: 1
+  searchSteps: 24
+  extraSkin: 0.01
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  lastSafePos: {x: 0, y: 0}
+  hasSafePos: 0
 --- !u!50 &21246655
 Rigidbody2D:
   serializedVersion: 5
@@ -1364,7 +1382,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 29584371}
-  - component: {fileID: 29584372}
   m_Layer: 0
   m_Name: OtherCristal
   m_TagString: Untagged
@@ -1400,24 +1417,8 @@ Transform:
   - {fileID: 490619843}
   - {fileID: 1498035711}
   - {fileID: 1719320347}
-  - {fileID: 1596120381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &29584372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 29584370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d7694380b3d09c47b4909ccd29b5722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  porte: {fileID: 1596120380}
-  player: {fileID: 1672679481}
-  opened: 0
 --- !u!1 &34989103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1586,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &47237765
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1742,7 +1742,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &49252844
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2061,7 +2060,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &99529762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2995,7 +2993,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &184504297
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3890,7 +3887,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &300075818
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4191,7 +4187,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &330491684
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4528,7 +4523,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &420736162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4793,7 +4787,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &490619841
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4945,7 +4938,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1.43
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -5050,7 +5043,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &524153294
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6844,7 +6836,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &650473276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7105,7 +7096,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &729709205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7262,7 +7252,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &765805408
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7593,7 +7582,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &806685226
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8580,7 +8568,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!19719996 &912856008
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -9097,6 +9084,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solidMask:
+    m_Bits: 192
+  groundRay: 2
+  searchRadius: 1
+  searchSteps: 24
+  extraSkin: 0.01
+  rb: {fileID: 0}
+  col: {fileID: 0}
+  lastSafePos: {x: 0, y: 0}
+  hasSafePos: 0
 --- !u!50 &912856012
 Rigidbody2D:
   serializedVersion: 5
@@ -9387,7 +9384,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &941021678
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9967,7 +9963,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1113453964
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10124,7 +10119,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1120809627
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10861,7 +10855,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1239369519
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11130,7 +11123,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1303471451
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11271,7 +11263,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1341544322
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11444,7 +11435,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1398720202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11892,7 +11882,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1498035709
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12201,7 +12190,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1519384528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40783,7 +40771,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1547912826
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40899,37 +40886,6 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 293677799}
-  m_Father: {fileID: 29584371}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1596120380
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1596120381}
-  m_Layer: 0
-  m_Name: UselessDoor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1596120381
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596120380}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -37.791004, y: 37.447395, z: 2.0012858}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 29584371}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1612262371
@@ -42362,7 +42318,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1651125792
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42761,7 +42716,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1719320345
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -42934,7 +42888,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &1780276984
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -44994,7 +44947,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &2082996812
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45425,7 +45377,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &2114304263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45582,7 +45533,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &2123940927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -45947,7 +45897,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &2130484659
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -46104,7 +46053,6 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
-  lockedOn: 0
 --- !u!61 &2132079396
 BoxCollider2D:
   m_ObjectHideFlags: 0
