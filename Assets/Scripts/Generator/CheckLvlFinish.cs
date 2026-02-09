@@ -21,11 +21,12 @@
 
         }
 
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             if (!collision.gameObject.CompareTag("Player")) return;
 
-            if (gameObject.tag == "LV1" && lvl1Finished)
+            if (gameObject.tag == "LV1" && PlayerPrefs.GetInt("Level_1_Completed", 0) == 1)
             {
                 Debug.Log("Level 1 finished, changing rune color");
                 rune.color = new Color32(0, 128, 251, 255);  
@@ -37,7 +38,7 @@
                 PlayerPrefs.Save();
                 
             }
-            else if (gameObject.tag == "LV2" && lvl2Finished)
+            else if (gameObject.tag == "LV2" && PlayerPrefs.GetInt("Level_2_Completed", 0) == 1)
             {
                 Debug.Log("Level 2 finished, changing rune color");
                 rune.color = new Color32(0, 255, 16, 255);
@@ -46,7 +47,7 @@
                 PlayerPrefs.SetInt("LV2Valide", 1);
                 PlayerPrefs.Save();
             }
-            else if (gameObject.tag == "LV3" && lvl3Finished)
+            else if (gameObject.tag == "LV3" && PlayerPrefs.GetInt("Level_3_Completed", 0) == 1)
             {   
                 rune.color = new Color32(255, 33, 0, 255);
                 if (light2D != null) light2D.intensity = 0.7f;
@@ -54,7 +55,7 @@
                 PlayerPrefs.SetInt("LV3Valide", 1);
                 PlayerPrefs.Save();
             }
-            else if (gameObject.tag == "LV4" && lvl4Finished)
+            else if (gameObject.tag == "LV4" && PlayerPrefs.GetInt("Level_4_Completed", 0) == 1)
             {
                 rune.color = new Color32(255, 255, 255, 255);
                 if (light2D != null) light2D.intensity = 0.7f;
