@@ -22,6 +22,8 @@ public class GlobalTownLight : MonoBehaviour
         else if (PlayerPrefs.GetInt("Level_3_Completed", 0) == 1)
             radius = 20f;
         else if (PlayerPrefs.GetInt("Level_4_Completed", 0) == 1)
+            radius = 25f;
+        else if (PlayerPrefs.GetInt("GameFinished", 0) == 1)
             radius = 50f;
         else
             radius = 5f;
