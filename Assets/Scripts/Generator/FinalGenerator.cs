@@ -16,8 +16,6 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void Awake()
         {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
 
 
             int n = runes.Count;
@@ -58,6 +56,8 @@ namespace Cainos.PixelArtTopDown_Basic
                 PlayerPrefs.GetInt("LV3Valide", 0) == 1 &&
                 PlayerPrefs.GetInt("LV4Valide", 0) == 1;
 
+            
+            PlayerPrefs.SetInt("AllLevelsCompleted", allValid ? 1 : 0);
             float targetAlpha = (isInside && allValid) ? 1f : 0f;
 
             for (int i = 0; i < runes.Count; i++)
