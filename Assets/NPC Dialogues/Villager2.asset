@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2108a6902748bfa8d97587bff098a, type: 3}
+  m_Name: Villager2
+  m_EditorClassIdentifier: 
+  npcName: Ella
+  dialogueSets:
+  - state: 1
+    lines:
+    - "H\xE9 ! T\u2019as vu \xE7a ? Le sol brille un peu, non ?"
+    - "C'est moi o\xF9 j'ai vu de la lumi\xE8re ??"
+    - "Je commen\xE7ais d\xE9j\xE0 \xE0 m'habituer au noir, mais \xE7a s'est pas
+      mal."
+    - "Bient\xF4t on pourra explorer partout."
+  - state: 2
+    lines:
+    - "Gertrude m\u2019a dit qu\u2019elle sort sans lampe maintenant !"
+    - "Il y a plus de lumi\xE8re. Y a des coins o\xF9 j\u2019ose aller tout seul."
+    - "u crois que \xE7a vient d\u2019o\xF9 cette lumi\xE8re ?"
+  - state: 3
+    lines:
+    - "Bibi a racont\xE9 que quelqu\u2019un rallume le g\xE9n\xE9rateur de lumi\xE8re
+      !"
+    - "Les grottes cachent des cristaux ?? Trop styl\xE9."
+    - "J\u2019veux voir le village en plein jour !"
+  - state: 4
+    lines:
+    - "Wouah\u2026 on dirait presque le matin, tout le temps."
+    - "Maintenant j\u2019me perds plus du tout !"
+    - "Le village est trop beau comme \xE7a."
+    - "J\u2019aimerais dire merci\u2026 mais je sais pas \xE0 qui."
+  - state: 0
+    lines:
+    - Test

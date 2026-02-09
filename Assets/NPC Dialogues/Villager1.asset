@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2108a6902748bfa8d97587bff098a, type: 3}
+  m_Name: Villager1
+  m_EditorClassIdentifier: 
+  npcName: Hector
+  dialogueSets:
+  - state: 1
+    lines:
+    - "Dis\u2026 c\u2019est moi ou il fait un peu moins sombre ce soir ?"
+    - "J\u2019ai cru voir le pav\xE9 briller\u2026 s\xFBrement mes vieux yeux."
+    - "Le noir joue parfois des tours \xE0 l\u2019esprit, tu sais."
+    - "J\u2019ai pourtant pas chang\xE9 ma lampe\u2026 bizarre."
+    - "Mmh\u2026 non, non, c\u2019est rien"
+  - state: 2
+    lines:
+    - "Figure-toi que je suis sortie sans ma lampe hier. Sans m\u2019en rendre compte"
+    - "J\u2019ai pas tr\xE9buch\xE9 une seule fois\u2026 \xE7a ne m\u2019\xE9tait
+      pas arriv\xE9 depuis des ann\xE9es."
+    - "Les ruelles pr\xE8s de la place sont plus\u2026 visibles."
+    - "Tu crois que \xE7a veut dire quelque chose ?"
+    - "J\u2019esp\xE8re que ce n\u2019est pas un mauvais pr\xE9sage."
+  - state: 3
+    lines:
+    - "Bibi dit que quelqu\u2019un rallume les lampadaires\u2026"
+    - "Les grottes\u2026 on \xE9vitait d\u2019en parler. Trop sombres, trop effrayantes."
+    - "Dire qu\u2019il y avait des cristaux l\xE0-dessous depuis tout ce temps."
+    - "Je n\u2019aurais jamais cru revoir \xE7a de mon vivant."
+  - state: 4
+    lines:
+    - "Regarde-moi \xE7a\u2026 je vois le village sans plisser les yeux."
+    - "J\u2019ai rang\xE9 ma vieille lampe. Pour de bon. Plus besoin maintenant !"
+    - "C\u2019est si beau la lumi\xE8re\u2026 j\u2019en ai presque les larmes aux
+      yeux."
+    - "On a bien fait d\u2019attendre, finalement."
+    - "Merci\u2026 \xE0 toi, qui a os\xE9."
+  - state: 0
+    lines:
+    - Test

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2108a6902748bfa8d97587bff098a, type: 3}
+  m_Name: Villager4
+  m_EditorClassIdentifier: 
+  npcName: Rosine
+  dialogueSets:
+  - state: 1
+    lines:
+    - "C'est doux cette lumi\xE8re."
+    - "J\u2019ai cru voir des ombres\u2026 moins lourdes."
+  - state: 2
+    lines:
+    - "La lumi\xE8re glisse sur les murs maintenant."
+    - "Le village \xE9tait beau\u2026 m\xEAme cach\xE9."
+  - state: 3
+    lines:
+    - "Bibi dit que quelqu\u2019un ravive les cristaux de lumi\xE8re."
+    - "J\u2019imaginais ce jour sans y croire"
+    - "Les grottes faisaient peur\u2026 mais elles prot\xE9geaient quelque chose."
+    - "La lumi\xE8re revient doucement."
+  - state: 4
+    lines:
+    - "Regarde\u2026 on peut enfin voir les couleurs."
+    - Le village est vivant. C'est magnifique.
+    - "On a bien fait d\u2019attendre, finalement."
+  - state: 0
+    lines:
+    - Test
