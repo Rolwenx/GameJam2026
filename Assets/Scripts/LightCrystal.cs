@@ -168,7 +168,7 @@ public class LightCrystal : MonoBehaviour
                 Physics2D.IgnoreCollision(bc, col, true);
             }
         }
-
+        
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;    
         bc.isTrigger = false; // s'assure que le cristal peut interagir avec le sol après être tombé
 
