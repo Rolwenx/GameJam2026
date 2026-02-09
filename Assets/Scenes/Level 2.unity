@@ -12108,7 +12108,7 @@ MonoBehaviour:
   panel: {fileID: 669548295}
   endText: {fileID: 218607405}
   nextSceneName: Pick Level
-  currentLevel: 1
+  currentLevel: 2
   fadeDuration: 2
   waitAfterFade: 2
 --- !u!1 &1394599694
