@@ -44,7 +44,12 @@ public class LightCrystal : MonoBehaviour
         light2D = cristalChildren[0].GetComponent<Light2D>();
         light2D.intensity = offIntensity;
 
+        // prend le rigibody et le met en kinematic dès le départ pour éviter que le cristal tombe avant d'être activé
+        if (gameObject.GetComponent<Rigidbody2D>() == null) gameObject.AddComponent<Rigidbody2D>();
+        Rigidbody2D rb = gameObject.GetComponent<Rigidbody2D>();
 
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.gravityScale = 0f;
 
     }
 
@@ -143,8 +148,8 @@ public class LightCrystal : MonoBehaviour
         if (crystalCollider != null)
             crystalCollider.enabled = false;
 
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         BoxCollider2D bc = GetComponent<BoxCollider2D>();
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb == null) rb = gameObject.AddComponent<Rigidbody2D>();
         if (bc == null) bc = gameObject.AddComponent<BoxCollider2D>();
 
