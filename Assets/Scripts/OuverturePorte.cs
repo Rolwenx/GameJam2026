@@ -13,6 +13,9 @@ public class OuverturePorte : MonoBehaviour
 
     public bool opened = false;
 
+    private bool sustainUnlocked = false;
+
+
     private void Start()
     {
         historyHit = player.GetComponent<PlayerAim>().historyHit;
@@ -24,10 +27,32 @@ public class OuverturePorte : MonoBehaviour
 
         HashSet<Transform> neededCristaux = GetLitGrosCristaux(); // cristaux nécessaire pour ouvrir la porte
         HashSet<Transform> touchedSet = GetTouchedGrosCristaux(); // cristaux qui ont été touchés par le rayon du joueur
+        Debug.Log($"touchedSet : {string.Join(", ", touchedSet.Select(t => t.name))}"); 
+        Debug.Log($"{touchedSet.Count} cristaux touchés");
 
         if (neededCristaux.Count == 0 || touchedSet.Count == 0) return;
 
-        if (!neededCristaux.SetEquals(touchedSet)) return; // on vérifie si la liste des cristaux touchées correspond à la liste des cristaux qui doivent être allumés
+        if (!neededCristaux.SetEquals(touchedSet)) {
+            if (touchedSet.Count >= 2)
+            {
+                Debug.Log("Sustain unlocked!");
+                foreach (Transform gros in GetTouchedGrosCristaux())
+                {
+                    var lc = gros.GetComponent<LightCrystal>();
+                    if (lc != null)
+                    {
+                        lc.lockedOn = true;          // empêche Calltolight de relancer une extinction
+                        lc.StopAllCoroutines();
+                        // force l'intensité ON
+                        // (si tu as ajouté LockOn(), utilise lc.LockOn(5f);)
+                    }
+
+                    foreach (var l in gros.GetComponentsInChildren<Light2D>(true))
+                        l.intensity = 1f; // mets la valeur que tu veux
+                }
+            }
+
+        }else {
 
         opened = true;
         OnDoorOpened?.Invoke();
@@ -36,8 +61,6 @@ public class OuverturePorte : MonoBehaviour
         foreach (Transform gros in neededCristaux)
         {
             LightCrystal crystal = gros.GetComponent<LightCrystal>();
-            Debug.Log($"Sur {gros.name} -> LightCrystal trouvé ? {gros.GetComponentInChildren<LightCrystal>(true) != null}");
-
             if (crystal != null)
             {
                 crystal.CancelAll();
@@ -50,6 +73,9 @@ public class OuverturePorte : MonoBehaviour
                 if (light2D != null) light2D.intensity = 2f;
             }
         }
+        }
+
+        
     }
 
 

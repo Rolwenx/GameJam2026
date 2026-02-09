@@ -28,7 +28,7 @@ public class LightCrystal : MonoBehaviour
     public static event Action OnTutorialCrystalFinished;
     public static event Action AfterEnchainementCristal;
 
-    private bool lockedOn = false; // pour éviter que le cristal soit réactivé après avoir été désactivé par la porte
+    public bool lockedOn = false; // pour éviter que le cristal soit réactivé après avoir été désactivé par la porte
 
     private GameObject porte;
 
