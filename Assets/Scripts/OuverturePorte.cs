@@ -48,7 +48,7 @@ public class OuverturePorte : MonoBehaviour
             foreach (Transform child in gros)
             {
                 Light2D light2D = child.GetComponent<Light2D>();
-                if (light2D != null) light2D.intensity = 2f;
+                if (light2D != null) light2D.intensity = 0.7f;
             }
         }
     }
