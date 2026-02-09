@@ -6,11 +6,17 @@ public class Level1Manager : MonoBehaviour
 
     [SerializeField] private Transform player;
     [SerializeField] private FollowerDialogueActor bibi;
+    private Collider2D demoDoorCollider;
 
     private int Cristal1HasBeenLit = 0;
     private bool WaterExplanationHasBeenShown = false;
     private GameObject porte;
         private bool enchainementFinished = false;
+    public bool dialogueLocked = false;
+    
+    private bool crystalTutorialShown = false;
+    private bool finalDoorDialogueShown = false;
+
 
     private string[] dialoguesFollower =
     {
@@ -32,16 +38,30 @@ public class Level1Manager : MonoBehaviour
 
     private string[] dialoguesAfterEnchainement =
     {
-        "Bibi : Trop top. les cristaux sont maintenant allumés !",
-        "Bibi : Bon continuons."
+        "Bibi : Trop top. Les cristaux restent allumés quand on les relie ensemble !",
+        "Bibi : Bon, bon, bon. Continuons !"
     };
 
     private string[] dialoguesAfterDemoDoor =
     {
         "Bibi : Oh, une porte !",
         "Bibi : Malheureusement, elle est verrouillée. Il doit y avoir un moyen de l'ouvrir...",
-        "Bibi : Peut-être que les cristaux peuvent t'aider ?"
+        "Bibi : Certains cristaux sont de la même couleur que la porte...",
+        "Bibi : Quel coincidence, c'est marrant !"
     };
+
+
+    private string[] dialoguesEnding =
+    {
+        "Bibi : La lumière est totalement rétablie dans cette grotte, wow ! ",
+        "Bibi : Ça faisait si longtemps que je n'avais pas vu une pièce éclairée. ",
+        "Bibi : Je crois que je vais...!",
+        "Bibi : PLEURERRRRRR.",
+        "Bibi : Oh !",
+        "Bibi : Allons jeter un oeil sur le générateur pour voir. Sors vite !",
+        "Bibi : La sortie est sûrement derrière la porte."
+    };
+
 
     private int index = 0;
     private bool followerFinished = false;
@@ -59,6 +79,10 @@ public class Level1Manager : MonoBehaviour
     private bool hasCollided = false;
 
 
+    private void Awake()
+    {
+        demoDoorCollider = DemoDoor.GetComponent<Collider2D>();
+    }
     void Start()
     {
         Time.timeScale = 0f;
@@ -76,6 +100,8 @@ public class Level1Manager : MonoBehaviour
 
     void Update()
     {
+        if (dialogueLocked) return;
+
         if (crystalDialogueActive && Input.GetMouseButtonDown(0))
         {
             AdvanceCrystalDialogue();
@@ -95,11 +121,17 @@ public class Level1Manager : MonoBehaviour
             enchainementFinished = true;
             OnAfterEnchainementCristal();
         }
+
         hasCollided = DemoDoor.GetComponent<DemoDoor>().hasCollided;
 
         if (hasCollided && !startDemoDoor)
         {
             startDemoDoor = true;
+
+            // Disable collision so player can pass through
+            if (demoDoorCollider != null)
+                demoDoorCollider.enabled = false;
+
             OnDemoDoorCollision();
         }
 
@@ -125,9 +157,9 @@ public class Level1Manager : MonoBehaviour
         dialogueUI.HideIndication();
         bibi.ShowNearPlayer(player);
 
-        currentDialogue = dialoguesAfterDemoDoor;     // ✅
-        index = 0;                                        // ✅
-        dialogueUI.ShowFollower(currentDialogue[index]);  // ✅
+        currentDialogue = dialoguesAfterDemoDoor; 
+        index = 0;                                   
+        dialogueUI.ShowFollower(currentDialogue[index]);
 
         crystalDialogueActive = true;
 
@@ -163,17 +195,19 @@ public class Level1Manager : MonoBehaviour
     private void OnEnable()
     {
         LightCrystal.OnTutorialCrystalFinished += OnCrystalTutorialDone;
+        PorteManager.OnTutorialFinalDoorOpened += OnTutorialFinalDoorOpened;
 
     }
 
     private void OnDisable()
     {
         LightCrystal.OnTutorialCrystalFinished -= OnCrystalTutorialDone;
+        PorteManager.OnTutorialFinalDoorOpened -= OnTutorialFinalDoorOpened;
     }
 
     private void OnCrystalTutorialDone()
     {
-        if (anyTutorialMessageAlreadyShown) return;
+        if (crystalTutorialShown) return;
         Time.timeScale = 0f;
 
         dialogueUI.HideIndication();
@@ -185,6 +219,7 @@ public class Level1Manager : MonoBehaviour
 
         crystalDialogueActive = true;
         anyTutorialMessageAlreadyShown = true;
+        crystalTutorialShown = true;
     }
 
     public void OnAfterEnchainementCristal()
@@ -229,10 +264,23 @@ public class Level1Manager : MonoBehaviour
             Debug.Log("Player entered water trigger for the first time, showing water explanation.");
             gameObject.GetComponent<Collider2D>().enabled = false; // Désactive le collider pour éviter de répéter l'explication
 
+    }
 
+    private void OnTutorialFinalDoorOpened()
+    {
+        if (finalDoorDialogueShown) return;
 
+        Time.timeScale = 0f;
 
+        dialogueUI.HideIndication();
+        bibi.ShowNearPlayer(player);
 
+        currentDialogue = dialoguesEnding;
+        index = 0;
+        dialogueUI.ShowFollower(currentDialogue[index]);
+
+        crystalDialogueActive = true; 
+        finalDoorDialogueShown = true;
     }
 
 

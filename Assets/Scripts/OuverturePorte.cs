@@ -16,6 +16,7 @@ public class OuverturePorte : MonoBehaviour
     private void Start()
     {
         historyHit = player.GetComponent<PlayerAim>().historyHit;
+        historyHit.Clear();
     }
 
     private void Update()

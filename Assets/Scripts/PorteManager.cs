@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
+using System;
 
 public class PorteManager : MonoBehaviour
 {
@@ -9,13 +10,16 @@ public class PorteManager : MonoBehaviour
 
     [Header("Light Settings")]
     [SerializeField] private Light2D playerLight;
+    [Header("Tutorial")]
+    [SerializeField] public bool isItTutorial = true;
+    public bool hasTutorialbeenDone = false;
+    public static event Action OnTutorialFinalDoorOpened;
 
     private void Start()
     {
         int lastIndex = transform.childCount - 1;
 
-        lastDoor = transform.GetChild(lastIndex)
-                            .GetComponent<OuverturePorte>();
+        lastDoor = transform.GetChild(lastIndex).GetComponent<OuverturePorte>();
 
         if(lastDoor != null)
             lastDoor.OnDoorOpened += HandleFinalDoor;
@@ -27,7 +31,16 @@ public class PorteManager : MonoBehaviour
     {
         if(finalTriggered) return;
 
+
         finalTriggered = true;
+        Debug.Log("here");
+        if (isItTutorial && !hasTutorialbeenDone)
+        {
+            hasTutorialbeenDone = true;
+            Debug.Log("done");
+
+            OnTutorialFinalDoorOpened?.Invoke();
+        }
 
 
         StartCoroutine(ExpandLight());

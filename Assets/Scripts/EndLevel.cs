@@ -11,6 +11,7 @@ public class EndLevel : MonoBehaviour
 
     [Header("Scene")]
     [SerializeField] private string nextSceneName;
+    [SerializeField] private int currentLevel = 1;
 
     [Header("Timing")]
     [SerializeField] private float fadeDuration = 2f;
@@ -37,6 +38,9 @@ public class EndLevel : MonoBehaviour
         Time.timeScale = 0f;
 
         panel.SetActive(true);
+        // Save tutorial completion
+        PlayerPrefs.SetInt("Level_"+currentLevel+"_Completed", 1);
+        PlayerPrefs.Save();
 
         float t = 0f;
 
