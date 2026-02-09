@@ -5320,6 +5320,7 @@ MonoBehaviour:
   - "Alors ? tu as retrouv\xE9 des morceaux de notre g\xE9n\xE9rateur ?"
   - "Si oui, d\xE9pose les. Cela nous permettra de retrouver la lumi\xE8re !"
   - Il suffit que tu t'approches, et les pylones s'allumeront !
+  - "Si tu veux retourner en ville, suis le chemin derri\xE8re toi."
   dialogueCanvas: {fileID: 425958542}
   textSpeed: 0.05
 --- !u!4 &414174304
