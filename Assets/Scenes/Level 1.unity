@@ -924,7 +924,7 @@ Transform:
   m_GameObject: {fileID: 488886312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.09, y: -7.02, z: -10}
+  m_LocalPosition: {x: -9.6, y: -6.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5788,7 +5788,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 740400854}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8fe26207fed42e9a309bc0db40efe1, type: 3}
+  m_Script: {fileID: 11500000, guid: e662e22b5492ed844b77888bdb41a10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!19719996 &740400859
@@ -5821,7 +5821,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -8366,8 +8366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5a491c46d86c45edbfc851dac5d3899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextSceneName: 
-  triggered: 0
 --- !u!65 &1130108872
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38394,7 +38392,7 @@ Transform:
   m_GameObject: {fileID: 1858145486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.09, y: -7.02, z: 0}
+  m_LocalPosition: {x: -9.6, y: -6.5, z: 0}
   m_LocalScale: {x: 2.06, y: 2.06, z: 2.06}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -46739,7 +46737,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.39009476, y: -1.57006, z: -10}
+  m_LocalPosition: {x: 0.36882988, y: -1.57022, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
