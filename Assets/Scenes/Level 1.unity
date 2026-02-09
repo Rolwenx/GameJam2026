@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &24806977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4951,7 +4951,7 @@ MonoBehaviour:
     m_Bits: 528
   stopLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   trajectory_line: {fileID: 1982756728}
 --- !u!120 &595188728
 LineRenderer:
@@ -38175,7 +38175,7 @@ GameObject:
   - component: {fileID: 1858145489}
   - component: {fileID: 1858145488}
   - component: {fileID: 1858145487}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MainChar
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -46737,7 +46737,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36882988, y: -1.57022, z: -10}
+  m_LocalPosition: {x: 0.4265766, y: -1.5697498, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
