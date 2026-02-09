@@ -16,8 +16,6 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void Awake()
         {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
 
 
             int n = runes.Count;
