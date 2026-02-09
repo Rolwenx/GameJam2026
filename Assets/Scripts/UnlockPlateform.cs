@@ -5,6 +5,7 @@ public class UnlockPlateform : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private GameObject plateformHidden;
     [SerializeField] private bool firstimeOnplateform = true;
+    public GameObject cristalhidden;
     public GameObject porte4;
     private OuverturePorte ouverturePorte;
     public bool goUp = false;
@@ -13,6 +14,7 @@ public class UnlockPlateform : MonoBehaviour
     {
         plateformHidden.SetActive(false);
         ouverturePorte = porte4.GetComponent<OuverturePorte>();
+        cristalhidden.SetActive(false);
 
     }
 
@@ -36,6 +38,7 @@ public class UnlockPlateform : MonoBehaviour
         {
             firstimeOnplateform = false;
             plateformHidden.SetActive(true);
+            cristalhidden.SetActive(true);
         }
         else {
             goUp = true;

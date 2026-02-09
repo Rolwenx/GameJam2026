@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Lit
   - Unlit
+  - Recharge
   layers:
   - Default
   - TransparentFX
