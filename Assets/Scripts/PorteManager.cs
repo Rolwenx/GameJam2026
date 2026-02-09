@@ -1,29 +1,64 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using System.Collections;
 
-public class PorteMa : MonoBehaviour
+public class PorteManager : MonoBehaviour
 {
-    private int currentIndex = 0;
+    private OuverturePorte lastDoor;
+    private bool finalTriggered = false;
 
-    private void Update()
+    [Header("Light Settings")]
+    [SerializeField] private Light2D playerLight;
+
+    private void Start()
     {
-        if (currentIndex >= transform.childCount) return;
+        int lastIndex = transform.childCount - 1;
 
-        Transform current = transform.GetChild(currentIndex);
+        lastDoor = transform.GetChild(lastIndex)
+                            .GetComponent<OuverturePorte>();
 
-        OuverturePorte op = current.GetComponent<OuverturePorte>();
-        if (op == null) return;
+        if(lastDoor != null)
+            lastDoor.OnDoorOpened += HandleFinalDoor;
+        else
+            Debug.LogWarning("Last door missing OuverturePorte.");
+    }
 
-        if (!op.opened) return;
+    private void HandleFinalDoor()
+    {
+        if(finalTriggered) return;
 
-        op.enabled = false;
+        finalTriggered = true;
 
-        int nextIndex = currentIndex + 1;
-        if (nextIndex < transform.childCount)
+
+        StartCoroutine(ExpandLight());
+    }
+
+    private IEnumerator ExpandLight()
+    {
+        float start = playerLight.pointLightOuterRadius;
+        float target = 500f;
+        float duration = 15f;
+
+        float t = 0f;
+
+        while (t < duration)
         {
-            Transform next = transform.GetChild(nextIndex);
-            next.gameObject.SetActive(true);
+            t += Time.deltaTime;
+
+            float k = Mathf.SmoothStep(0, 1, t / duration);
+
+            playerLight.pointLightOuterRadius =
+                Mathf.Lerp(start, target, k);
+
+            yield return null;
         }
 
-        currentIndex = nextIndex;
+        playerLight.pointLightOuterRadius = target;
+    }
+
+    private void OnDestroy()
+    {
+        if(lastDoor != null)
+            lastDoor.OnDoorOpened -= HandleFinalDoor;
     }
 }

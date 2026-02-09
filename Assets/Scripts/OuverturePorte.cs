@@ -7,6 +7,7 @@ public class OuverturePorte : MonoBehaviour
 {
     [SerializeField] private GameObject porte;
     [SerializeField] private GameObject player;
+    public System.Action OnDoorOpened;
 
     private List<Collider2D> historyHit;
 
@@ -29,6 +30,7 @@ public class OuverturePorte : MonoBehaviour
         if (!neededCristaux.SetEquals(touchedSet)) return; // on vérifie si la liste des cristaux touchées correspond à la liste des cristaux qui doivent être allumés
 
         opened = true;
+        OnDoorOpened?.Invoke();
         porte.SetActive(false);
 
         foreach (Transform gros in neededCristaux)
