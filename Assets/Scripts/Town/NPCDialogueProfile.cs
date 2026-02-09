@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "GameJam/NPC Dialogue Profile", fileName = "NPCDialogueProfile")]
+[CreateAssetMenu(menuName = "City/NPC Dialogue Profile", fileName = "NPCDialogueProfile")]
 public class NPCDialogueProfile : ScriptableObject
 {
     [Serializable]
@@ -22,10 +22,11 @@ public class NPCDialogueProfile : ScriptableObject
     {
         DialogueSet set = dialogueSets.Find(s => s.state == state);
 
-        if (set == null || set.lines == null || set.lines.Count == 0)
+        // fallback sur None si pas trouvé
+        if (set == null || set.lines.Count == 0)
         {
             set = dialogueSets.Find(s => s.state == GameProgressState.None);
-            if (set == null || set.lines == null || set.lines.Count == 0)
+            if (set == null || set.lines.Count == 0)
                 return "...";
         }
 

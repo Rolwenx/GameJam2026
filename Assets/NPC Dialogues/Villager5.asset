@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f2108a6902748bfa8d97587bff098a, type: 3}
+  m_Name: Villager5
+  m_EditorClassIdentifier: 
+  npcName: Theo
+  dialogueSets:
+  - state: 1
+    lines:
+    - "Les anciens textes parlent de \xE7a\u2026 Que la lumi\xE8re ferait son retour."
+    - "Je pensais que c\u2019\xE9tait une m\xE9taphore."
+    - "Je commence \xE0 mieux voir..."
+  - state: 2
+    lines:
+    - "Les chroniques \xE9voquent des cristaux oubli\xE9s."
+    - "\u2019histoire se r\xE9p\xE8te. Mais pourquoi ?"
+    - "Personne n\u2019osait les chercher. Ces cristaux. Il faisait trop noir."
+  - state: 3
+    lines:
+    - "Bibi a confirm\xE9 ce que je soup\xE7onnais."
+    - "Les grottes \xE9taient un sanctuaire. Ou pas ?"
+    - "Heureusement, quelqu\u2019un a os\xE9. Etait-ce toi ?"
+  - state: 4
+    lines:
+    - Nous vivons un moment historique. Et je suis en vie pour y assister.
+    - "Les livres devront \xEAtre r\xE9\xE9crits."
+    - "On a bien fait d\u2019attendre, finalement."
+    - "Merci\u2026 \xE0 toi, qui a os\xE9."
+  - state: 0
+    lines:
+    - Test
