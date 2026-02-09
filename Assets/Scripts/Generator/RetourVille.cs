@@ -7,6 +7,8 @@ public class RetourVille : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //load la scene avec le nom TOwn
+            PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
+            PlayerPrefs.Save();
             UnityEngine.SceneManagement.SceneManager.LoadScene("Town"); 
         }
     }
