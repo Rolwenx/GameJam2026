@@ -268,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -925,7 +924,7 @@ Transform:
   m_GameObject: {fileID: 488886312}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.9, y: -3.4, z: -10}
+  m_LocalPosition: {x: -13.09, y: -7.02, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5445,7 +5444,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -5519,6 +5517,8 @@ GameObject:
   - component: {fileID: 740400855}
   - component: {fileID: 740400857}
   - component: {fileID: 740400856}
+  - component: {fileID: 740400859}
+  - component: {fileID: 740400858}
   m_Layer: 0
   m_Name: Obstancles
   m_TagString: Untagged
@@ -5779,6 +5779,56 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &740400858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740400854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8fe26207fed42e9a309bc0db40efe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!19719996 &740400859
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 740400854}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &750883488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,7 +6091,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -7616,7 +7665,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -9004,7 +9052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -14910,7 +14957,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -38160,7 +38206,6 @@ MonoBehaviour:
     m_Bits: 528
   trajectoryPrediction: {fileID: 595188727}
   isHardLevel: 0
-  historyHit: []
 --- !u!50 &1858145488
 Rigidbody2D:
   serializedVersion: 5
@@ -38349,7 +38394,7 @@ Transform:
   m_GameObject: {fileID: 1858145486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.9, y: -3.4, z: 0}
+  m_LocalPosition: {x: -13.09, y: -7.02, z: 0}
   m_LocalScale: {x: 2.06, y: 2.06, z: 2.06}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -46694,7 +46739,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 42.906254, y: -3.37622, z: -10}
+  m_LocalPosition: {x: 0.39009476, y: -1.57006, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
