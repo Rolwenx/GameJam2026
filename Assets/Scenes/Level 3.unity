@@ -1590,6 +1590,7 @@ GameObject:
   - component: {fileID: 697584958}
   - component: {fileID: 697584957}
   - component: {fileID: 697584956}
+  - component: {fileID: 697584960}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -2137,6 +2138,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &697584960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697584954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &747524591
 GameObject:
   m_ObjectHideFlags: 0
@@ -3213,6 +3226,7 @@ GameObject:
   - component: {fileID: 1121978929}
   - component: {fileID: 1121978928}
   - component: {fileID: 1121978927}
+  - component: {fileID: 1121978931}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -3760,6 +3774,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1121978931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121978925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1141520206
 GameObject:
   m_ObjectHideFlags: 0
@@ -4177,6 +4203,7 @@ GameObject:
   - component: {fileID: 1183407455}
   - component: {fileID: 1183407454}
   - component: {fileID: 1183407453}
+  - component: {fileID: 1183407457}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -4724,6 +4751,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1183407457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183407451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185245342
 GameObject:
   m_ObjectHideFlags: 0
@@ -6041,6 +6080,7 @@ GameObject:
   - component: {fileID: 1483373941}
   - component: {fileID: 1483373940}
   - component: {fileID: 1483373939}
+  - component: {fileID: 1483373944}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -6588,6 +6628,18 @@ Transform:
   - {fileID: 1109439582}
   m_Father: {fileID: 1773056153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1483373944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1483373938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487218915
 GameObject:
   m_ObjectHideFlags: 0
@@ -49159,6 +49211,7 @@ GameObject:
   - component: {fileID: 2124699251}
   - component: {fileID: 2124699250}
   - component: {fileID: 2124699254}
+  - component: {fileID: 2124699255}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -49706,6 +49759,18 @@ MonoBehaviour:
   fallGravityScale: 1
   isItTutorial: 0
   hasTutorialbeenDone: 0
+--- !u!114 &2124699255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124699249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136610309
 GameObject:
   m_ObjectHideFlags: 0

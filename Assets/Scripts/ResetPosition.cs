@@ -21,7 +21,7 @@ public class ResetPosition : MonoBehaviour
             firstimeHitGround = false;
         }
         else {
-            if (collision.gameObject.name.Contains("LimitMap")) {
+            if (collision.gameObject.name.Contains("Obstacles") || collision.gameObject.name.Contains("LimitMap") || collision.gameObject.name.Contains("Danger")) {
                 transform.position = initialPosition;
                 Debug.Log("Reset position to: " + initialPosition);
             }
