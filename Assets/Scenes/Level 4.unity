@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 19091395}
   - component: {fileID: 19091394}
   - component: {fileID: 19091399}
-  - component: {fileID: 19091398}
+  - component: {fileID: 19091400}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -769,18 +769,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &19091398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19091392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &19091399
 Rigidbody2D:
   serializedVersion: 5
@@ -808,6 +796,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &19091400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19091392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &19402779
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +854,7 @@ GameObject:
   - component: {fileID: 21246651}
   - component: {fileID: 21246650}
   - component: {fileID: 21246655}
-  - component: {fileID: 21246654}
+  - component: {fileID: 21246656}
   m_Layer: 11
   m_Name: CristalsToTake
   m_TagString: Untagged
@@ -1401,18 +1401,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &21246654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21246648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &21246655
 Rigidbody2D:
   serializedVersion: 5
@@ -1440,6 +1428,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &21246656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21246648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &29584370
 GameObject:
   m_ObjectHideFlags: 0
@@ -9721,7 +9721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 912856005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da626d49adbc0e41993aef00f431660, type: 3}
+  m_Script: {fileID: 11500000, guid: 7532cd509cdac304182e29847d7d9250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &912856012
@@ -11741,7 +11741,7 @@ Transform:
   m_GameObject: {fileID: 1201956458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.2, y: 12.7, z: -10}
+  m_LocalPosition: {x: -17.6, y: -26.1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -44162,7 +44162,7 @@ Transform:
   m_GameObject: {fileID: 1672679481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.2, y: 12.7, z: 0}
+  m_LocalPosition: {x: -17.6, y: -26.1, z: 0}
   m_LocalScale: {x: 2.06, y: 2.06, z: 2.06}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -49202,7 +49202,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.578508, y: 12.657015, z: -10}
+  m_LocalPosition: {x: -8.8306, y: -22.070412, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
