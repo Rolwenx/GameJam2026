@@ -10535,7 +10535,7 @@ Transform:
   m_GameObject: {fileID: 1201956458}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26, y: 12.5, z: -10}
+  m_LocalPosition: {x: -9.1, y: -3.2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29800,7 +29800,7 @@ Transform:
   m_GameObject: {fileID: 1672679481}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26, y: 12.5, z: 0}
+  m_LocalPosition: {x: -9.1, y: -3.2, z: 0}
   m_LocalScale: {x: 2.06, y: 2.06, z: 2.06}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -30464,6 +30464,7 @@ GameObject:
   - component: {fileID: 1817203399}
   - component: {fileID: 1817203398}
   - component: {fileID: 1817203400}
+  - component: {fileID: 1817203401}
   m_Layer: 6
   m_Name: Danger
   m_TagString: Untagged
@@ -31204,6 +31205,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e662e22b5492ed844b77888bdb41a10b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!19719996 &1817203401
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817203396}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &1886975951
 GameObject:
   m_ObjectHideFlags: 0
@@ -33574,7 +33613,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.460392, y: 12.49807, z: -10}
+  m_LocalPosition: {x: -8.4657955, y: -3.20007, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
