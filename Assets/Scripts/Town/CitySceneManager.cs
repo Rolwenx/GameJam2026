@@ -17,6 +17,8 @@ public class CitySceneManager : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform generatorCamera;
     [SerializeField] private Light2D generatorLight;
+    [SerializeField] private GameObject level_choice;
+    [SerializeField] private Cainos.PixelArtTopDown_Basic.CameraFollow cameraFollow;
 
     [Header("UI")]
     [SerializeField] private GameObject panel;
@@ -32,6 +34,7 @@ public class CitySceneManager : MonoBehaviour
     {
         SetupPlayerSpawn();
         panel.SetActive(false);
+        level_choice.SetActive(false);
 
         //if (PlayerPrefs.GetInt(CITY_VISITED_KEY, 0) == 0)
         //{
@@ -56,11 +59,14 @@ public class CitySceneManager : MonoBehaviour
 
     private IEnumerator FirstTimeCityIntro()
     {
+        
         PlayerPrefs.SetInt(CITY_VISITED_KEY, 1);
         PlayerPrefs.Save();
         
 
         Time.timeScale = 0f;
+        if (cameraFollow != null)
+            cameraFollow.enabled = false;
 
         yield return new WaitForSecondsRealtime(2f);
 
@@ -96,7 +102,15 @@ public class CitySceneManager : MonoBehaviour
         generatorLight.intensity = 0;
 
         panel.SetActive(false);
+
+        if (cameraFollow != null)
+        {
+            cameraFollow.RecalculateOffset();
+            cameraFollow.enabled = true;
+        }
         Time.timeScale = 1f;
+        level_choice.SetActive(true);
+        
     }
 
     private IEnumerator WaitForLeftClick()
