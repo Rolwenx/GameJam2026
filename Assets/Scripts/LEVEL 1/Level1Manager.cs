@@ -1,12 +1,14 @@
 using UnityEngine;
+using System;
 
 public class Level1Manager : MonoBehaviour
 {
-    public DialogueUI dialogueUI;
+    [SerializeField] private DialogueTutorialManager dialogue;
 
     [SerializeField] private Transform player;
     [SerializeField] private FollowerDialogueActor bibi;
     private Collider2D demoDoorCollider;
+    private Collider2D waterCollider;
 
     private int Cristal1HasBeenLit = 0;
     private bool WaterExplanationHasBeenShown = false;
@@ -20,98 +22,111 @@ public class Level1Manager : MonoBehaviour
 
     private string[] dialoguesFollower =
     {
-        "Bibi : Wooow, j'arrive pas à y croire. On arrive à voir dans le noir ?",
-        "Bibi : Je pensais pas que ce jour arriverait, surtout depuis que les fragments de lumière ont cessé de briller.",
-        "Bibi : Certains fragments réagissent peut-être encore à la lumière.",
-        "Bibi : Peut-être peux-tu les rallumer avec le fragment que tu as trouvé ?"
+        "Wooow, j'arrive pas à y croire. On arrive à voir dans le noir ?",
+        "Je pensais pas que ce jour arriverait, surtout depuis que les fragments de lumière ont cessé de briller.",
+        "Certains fragments réagissent peut-être encore à la lumière.",
+        "Peut-être peux-tu les rallumer avec le fragment que tu as trouvé ?"
     };
 
-    private string indicationText =
-        "Clique gauche pour projeter de la lumière vers un fragment. ";
+    private string[] indicationText =
+    {
+        
+        "Clique gauche pour projeter de la lumière vers un fragment. "
+        };
+
 
     // Mini-dialogue après tuto cristal
     private string[] dialoguesAfterCrystal =
     {
-        "Bibi : On dirait que les cristaux ne sont pas assez puissants pour tenir longtemps.",
-        "Bibi : Essaie peut-être de les lier avec un autre cristal pour voir. Il y en a un tout devant."
+        "On dirait que les cristaux ne sont pas assez puissants pour tenir longtemps.",
+        "Essaie peut-être de les lier avec un autre cristal pour voir. Il y en a un tout devant."
     };
 
     private string[] dialoguesAfterEnchainement =
     {
-        "Bibi : Trop top. Les cristaux restent allumés quand on les relie ensemble !",
-        "Bibi : Bon, bon, bon. Continuons !"
+        "Trop top. Les cristaux restent allumés quand on les relie ensemble !",
+        "Bon, bon, bon. Continuons !"
     };
 
     private string[] dialoguesAfterDemoDoor =
     {
-        "Bibi : Oh, une porte !",
-        "Bibi : Malheureusement, elle est verrouillée. Il doit y avoir un moyen de l'ouvrir...",
-        "Bibi : Certains cristaux sont de la même couleur que la porte...",
-        "Bibi : Quel coincidence, c'est marrant !"
+        "Oh, une porte !",
+        "Malheureusement, elle est verrouillée. Il doit y avoir un moyen de l'ouvrir...",
+        "Certains cristaux sont de la même couleur que la porte...",
+        "Quel coincidence, c'est marrant !"
+    };
+    private string[] dialoguesAfterWater =
+    {
+        "L'eau peut être utilisée comme un miroir pour faire rebondir la lumière.",
+        "Essaie de viser un cristal avec l'eau !"
     };
 
 
     private string[] dialoguesEnding =
     {
-        "Bibi : La lumière est totalement rétablie dans cette grotte, wow ! ",
-        "Bibi : Ça faisait si longtemps que je n'avais pas vu une pièce éclairée. ",
-        "Bibi : Je crois que je vais...!",
-        "Bibi : PLEURERRRRRR.",
-        "Bibi : Oh !",
-        "Bibi : Allons jeter un oeil sur le générateur pour voir. Sors vite !",
-        "Bibi : La sortie est sûrement derrière la porte."
+        "La lumière est totalement rétablie dans cette grotte, wow ! ",
+        "Ça faisait si longtemps que je n'avais pas vu une pièce éclairée. ",
+        "Je crois que je vais...!",
+        "PLEURERRRRRR.",
+        "Oh !",
+        "Allons jeter un oeil sur le générateur pour voir. Sors vite !",
+        "La sortie est sûrement derrière la porte."
     };
 
 
-    private int index = 0;
     private bool followerFinished = false;
-    private bool crystalDialogueActive = false;
     private bool anyTutorialMessageAlreadyShown = false;
 
-    private string[] currentDialogue = null;
     
     public GameObject cristal;
     public GameObject cristal2;
 
     private bool startDemoDoor = false;
+    private bool startWater = false;
 
     public GameObject DemoDoor;
+    public GameObject Water;
     private bool hasCollided = false;
+    private bool hasCollidedWater = false;
 
 
     private void Awake()
     {
         demoDoorCollider = DemoDoor.GetComponent<Collider2D>();
+        waterCollider = Water.GetComponent<Collider2D>();
     }
     void Start()
     {
         Time.timeScale = 0f;
         bibi.ShowNearPlayer(player);
-        dialogueUI.ShowFollower(dialoguesFollower[index]);
+        dialogue.OnDialogueFinished += OnIntroDialogueFinished;
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesFollower
+        );
 
         // on met layer default pour les deux cristaux pour éviter les interactions avec le rayon du joueur avant qu'ils soient tombés
         cristal.layer = LayerMask.NameToLayer("Default");
         cristal2.layer = LayerMask.NameToLayer("Default");
 
+    }
 
+    void OnIntroDialogueFinished()
+    {
+        dialogue.OnDialogueFinished -= OnIntroDialogueFinished;
 
+        followerFinished = true;
+        bibi.Hide();
 
+        dialogue.StartIndication(
+            "Bibi",
+            indicationText
+        );
     }
 
     void Update()
     {
         if (dialogueLocked) return;
-
-        if (crystalDialogueActive && Input.GetMouseButtonDown(0))
-        {
-            AdvanceCrystalDialogue();
-            return;
-        }
-
-        if (!followerFinished && Input.GetMouseButtonDown(0))
-        {
-            NextFollowerDialogue();
-        }
 
         porte = GameObject.Find("PorteInvisbleContainer"); 
            
@@ -123,6 +138,7 @@ public class Level1Manager : MonoBehaviour
         }
 
         hasCollided = DemoDoor.GetComponent<DemoDoor>().hasCollided;
+        hasCollidedWater = Water.GetComponent<WaterTutorialTrigger>().hasCollidedWater;
 
         if (hasCollided && !startDemoDoor)
         {
@@ -135,61 +151,45 @@ public class Level1Manager : MonoBehaviour
             OnDemoDoorCollision();
         }
 
-        if (WaterExplanationHasBeenShown && Input.GetMouseButtonDown(0))
+        if (hasCollidedWater && !startWater)
         {
-            dialogueUI.HideIndication();
-            Time.timeScale = 1f;
-            // faire disparaitre bibi
-            bibi.Hide();
+            startWater = true;
+
+            // Disable collision so player can pass through
+            if (waterCollider != null)
+                waterCollider.enabled = false;
+
+            OnWaterCollision();
         }
-
-        
-
-        
 
 
     }
 
+void OnWaterCollision()
+    {
+        Time.timeScale = 0f;
+
+        bibi.ShowNearPlayer(player);
+                                  
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesAfterWater
+        );
+    }
     void OnDemoDoorCollision()
     {
         Time.timeScale = 0f;
 
-        dialogueUI.HideIndication();
         bibi.ShowNearPlayer(player);
+                                  
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesAfterDemoDoor
+        );
 
-        currentDialogue = dialoguesAfterDemoDoor; 
-        index = 0;                                   
-        dialogueUI.ShowFollower(currentDialogue[index]);
-
-        crystalDialogueActive = true;
 
         cristal.layer = LayerMask.NameToLayer("Cristals");
         cristal2.layer = LayerMask.NameToLayer("Cristals");
-    }
-
-    void NextFollowerDialogue()
-    {
-        index++;
-
-        if (index >= dialoguesFollower.Length)
-        {
-            EndFollowerDialogue();
-        }
-        else
-        {
-            dialogueUI.ShowFollower(dialoguesFollower[index]);
-        }
-    }
-
-    void EndFollowerDialogue()
-    {
-        followerFinished = true;
-
-        dialogueUI.HideFollower();
-        dialogueUI.ShowIndication(indicationText);
-
-        bibi.Hide(); // 👈 Bibi disparaît
-        Time.timeScale = 1f;
     }
 
     private void OnEnable()
@@ -210,14 +210,14 @@ public class Level1Manager : MonoBehaviour
         if (crystalTutorialShown) return;
         Time.timeScale = 0f;
 
-        dialogueUI.HideIndication();
         bibi.ShowNearPlayer(player);
+    
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesAfterCrystal
+        );
 
-        currentDialogue = dialoguesAfterCrystal;          // ✅
-        index = 0;                                        // ✅ (mets-le AVANT l’affichage)
-        dialogueUI.ShowFollower(currentDialogue[index]);  // ✅
-
-        crystalDialogueActive = true;
+        
         anyTutorialMessageAlreadyShown = true;
         crystalTutorialShown = true;
     }
@@ -226,45 +226,15 @@ public class Level1Manager : MonoBehaviour
     {
         Time.timeScale = 0f;
 
-        dialogueUI.HideIndication();
         bibi.ShowNearPlayer(player);
-
-        currentDialogue = dialoguesAfterEnchainement;     // ✅
-        index = 0;                                        // ✅
-        dialogueUI.ShowFollower(currentDialogue[index]);  // ✅
-
-        crystalDialogueActive = true;
-    }
-
-
-    void AdvanceCrystalDialogue()
-    {
-        index++;
-
-        if (currentDialogue == null || index >= currentDialogue.Length)
-        {
-            crystalDialogueActive = false;
-            dialogueUI.HideFollower();
-            bibi.Hide();
-            Time.timeScale = 1f;
-        }
-        else
-        {
-            dialogueUI.ShowFollower(currentDialogue[index]);
-        }
-    }
-
-    public void OnCollisionEnter2D(Collision2D other)
-    {
-        
-            Time.timeScale = 0f;
-            bibi.ShowNearPlayer(player);
-            dialogueUI.ShowIndication("L'eau peut être utilisé en tant que miroir pour faire rebondir la lumière. Tu peux essayer de viser un cristal avec l'eau !");
-            WaterExplanationHasBeenShown = true;
-            Debug.Log("Player entered water trigger for the first time, showing water explanation.");
-            gameObject.GetComponent<Collider2D>().enabled = false; // Désactive le collider pour éviter de répéter l'explication
+         
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesAfterEnchainement
+        );
 
     }
+
 
     private void OnTutorialFinalDoorOpened()
     {
@@ -272,14 +242,13 @@ public class Level1Manager : MonoBehaviour
 
         Time.timeScale = 0f;
 
-        dialogueUI.HideIndication();
         bibi.ShowNearPlayer(player);
 
-        currentDialogue = dialoguesEnding;
-        index = 0;
-        dialogueUI.ShowFollower(currentDialogue[index]);
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesEnding
+        );
 
-        crystalDialogueActive = true; 
         finalDoorDialogueShown = true;
     }
 

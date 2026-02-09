@@ -1,11 +1,12 @@
 using UnityEngine;
+using System;
 
 public class TutorialFinalMission : MonoBehaviour
 {
     [SerializeField] private FollowerDialogueActor bibi;
+    [SerializeField] private DialogueTutorialManager dialogue;
     [SerializeField] private Transform player;
 
-    public DialogueUI dialogueUI;
     private bool dialogueActive = false;
     private bool followerhasFinished = false;
     private int index = 0;
@@ -36,15 +37,16 @@ public class TutorialFinalMission : MonoBehaviour
             return;
         }
 
-        dialogueUI.ShowFollower(dialoguesBeforeEnding[index]);
+        dialogue.StartDialogue(
+            "Bibi",
+            dialoguesBeforeEnding
+        );
     }
 
     void EndFollowerDialogue()
     {
         followerhasFinished = true;
         dialogueActive = false;
-
-        dialogueUI.HideFollower();
         bibi.Hide();
 
         Level1Manager levelManager = FindObjectOfType<Level1Manager>();
@@ -65,7 +67,10 @@ public class TutorialFinalMission : MonoBehaviour
 
         index = 0; // RESET HERE
         bibi.ShowNearPlayer(player);
-        dialogueUI.ShowFollower(dialoguesBeforeEnding[index]);
+        dialogue.StartDialogue(
+        "Bibi",
+        dialoguesBeforeEnding
+    );
 
         gameObject.GetComponent<Collider2D>().enabled = false;
     }
