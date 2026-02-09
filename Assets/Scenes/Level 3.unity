@@ -588,7 +588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -698,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -1542,7 +1540,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -2147,7 +2144,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -2992,7 +2988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -3846,7 +3841,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -3957,7 +3951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -5122,7 +5115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -5581,6 +5573,7 @@ MonoBehaviour:
   panel: {fileID: 1798320731}
   endText: {fileID: 1444383913}
   nextSceneName: Pick Level
+  currentLevel: 1
   fadeDuration: 2
   waitAfterFade: 2
 --- !u!61 &1420491788
@@ -5896,7 +5889,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -23178,7 +23170,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -23971,7 +23962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -24096,6 +24086,7 @@ GameObject:
   - component: {fileID: 1686408635}
   - component: {fileID: 1686408634}
   - component: {fileID: 1686408633}
+  - component: {fileID: 1686408641}
   m_Layer: 3
   m_Name: MainChar (1)
   m_TagString: Player
@@ -24138,7 +24129,6 @@ MonoBehaviour:
     m_Bits: 2576
   trajectoryPrediction: {fileID: 1414359678}
   isHardLevel: 0
-  historyHit: []
 --- !u!50 &1686408635
 Rigidbody2D:
   serializedVersion: 5
@@ -24338,6 +24328,19 @@ Transform:
   - {fileID: 36132794}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1686408641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1686408632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb337208393f52d4e8c3b39666a35e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerAim: {fileID: 1686408634}
 --- !u!1 &1700157005
 GameObject:
   m_ObjectHideFlags: 0
@@ -47608,7 +47611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -47718,7 +47720,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -48087,6 +48088,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerLight: {fileID: 2064137789}
+  isItTutorial: 1
+  hasTutorialbeenDone: 0
 --- !u!4 &1992635679
 Transform:
   m_ObjectHideFlags: 0
@@ -49384,7 +49387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbce68aebed183c429631d4db12a73f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onIntensity: 2
   offIntensity: 0
   fadeDuration: 0.12
   stayLitTime: 3
@@ -49480,7 +49482,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3960271, y: 0.12646, z: -10}
+  m_LocalPosition: {x: 0.4192934, y: 0.12647009, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
