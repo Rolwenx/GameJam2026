@@ -51,4 +51,15 @@ public class LimitLightPlayer : MonoBehaviour
         if (t >= 0.20f) return new Color(1f, 0.55f, 0f);    // 50% -> 20% : orange
         return Color.red;                                   // en dessous de 20% : rouge
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Recharge"))
+        {
+            // si on touche une recharge, on remet la lumière + 30%
+            currentLight = Mathf.Clamp(currentLight + maxLight * 0.3f, 0f, maxLight);
+            UpdateUI();
+            collision.gameObject.SetActive(false); // on désactive la recharge après l'avoir utilisée
+        }
+    }
 }
