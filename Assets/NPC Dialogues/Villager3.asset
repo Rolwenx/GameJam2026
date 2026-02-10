@@ -36,6 +36,13 @@ MonoBehaviour:
     - On voit presque tout !
     - "Le village respire une nouvel \xE8re."
     - "Merci\u2026 \xE0 toi, qui a os\xE9."
-  - state: 0
+  - state: 5
     lines:
-    - Test
+    - " Incroyable\u2026 on y voit clair !\r\nJ\u2019avais oubli\xE9 \xE0 quel point
+      la ville pouvait \xEAtre belle."
+    - " Franchement, merci.\n\xC7a faisait trop longtemps qu\u2019on vivait dans
+      le noir. "
+    - " La lumi\xE8re, \xE7a change tout.\r\nM\xEAme l\u2019air a l\u2019air plus
+      l\xE9ger, tu trouves pas ?"
+    - "Peu importe ce qui s\u2019est pass\xE9 avant.\r\nMaintenant, on peut repartir
+      sur de bonnes bases. "

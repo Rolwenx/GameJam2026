@@ -38,6 +38,14 @@ MonoBehaviour:
     - "Maintenant j\u2019me perds plus du tout !"
     - "Le village est trop beau comme \xE7a."
     - "J\u2019aimerais dire merci\u2026 mais je sais pas \xE0 qui."
-  - state: 0
+  - state: 5
     lines:
-    - Test
+    - ' Regarde autour de toi !
+
+      On dirait une autre ville !'
+    - "J\u2019avais peur de ne jamais revoir \xE7a.\r\nTu nous as vraiment rendu
+      quelque chose."
+    - "J\u2019me sens\u2026 rassur\xE9e.\r\nComme si le pire \xE9tait enfin derri\xE8re
+      nous."
+    - " Quoi qu\u2019il arrive maintenant,\r\nau moins, on n\u2019avancera plus dans
+      le noir."
