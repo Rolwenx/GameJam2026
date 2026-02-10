@@ -14,7 +14,7 @@ public class GamePauseManager : MonoBehaviour
 
     public PlayerTopDownController playerTopDownMovementScript;
 
-    void Awake()
+    void Start()
     {
         PauseMenu.SetActive(false);
     }

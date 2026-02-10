@@ -19874,7 +19874,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sketchy>Quitter
+  m_text: <sketchy>Quitter
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
   m_sharedMaterial: {fileID: -3276648923902688294, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
@@ -22386,6 +22386,7 @@ GameObject:
   - component: {fileID: 1042830926}
   - component: {fileID: 1042830928}
   - component: {fileID: 1042830927}
+  - component: {fileID: 1042830929}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -22454,6 +22455,19 @@ MonoBehaviour:
   menuPrincipal: {fileID: 495493268}
   menuParametres: {fileID: 1237243124}
   "menuElementsD\xE9bloqu\xE9s": {fileID: 0}
+  ContinuerButton: {fileID: 0}
+--- !u!114 &1042830929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042830923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b4ac73e3c6e8244ad664fadadbf51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1048837927
 GameObject:
   m_ObjectHideFlags: 0
