@@ -9,7 +9,7 @@ public class GameStateManager : MonoBehaviour
 
     public event Action<GameProgressState> OnStateChanged;
 
-    private void Awake()
+    private void Start()
     {
         if (Instance != null && Instance != this)
         {
@@ -18,7 +18,6 @@ public class GameStateManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         RefreshState();
     }

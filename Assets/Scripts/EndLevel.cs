@@ -65,7 +65,7 @@ public class EndLevel : MonoBehaviour
         yield return new WaitForSecondsRealtime(waitAfterFade);
 
         Time.timeScale = 1f;
-
+        PlayerPrefs.GetString("LastScene",SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(nextSceneName);
     }
 }

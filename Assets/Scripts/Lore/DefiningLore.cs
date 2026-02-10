@@ -56,9 +56,9 @@ public class DefiningLore : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        audioSource.Play();
-        if (!collision.gameObject.CompareTag("Player")) return;
 
+        if (!collision.gameObject.CompareTag("Player")) return;
+        audioSource.Play();
         string currentSceneName = SceneManager.GetActiveScene().name;
 
         // dernier caractère doit être un chiffre (ex: "Scene1")
