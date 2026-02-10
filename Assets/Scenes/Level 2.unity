@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 37352169}
   - component: {fileID: 37352168}
   m_Layer: 9
-  m_Name: Cristal (9)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 57832616}
   - component: {fileID: 57832615}
   m_Layer: 9
-  m_Name: Cristal (21)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,7 +1474,7 @@ GameObject:
   - component: {fileID: 133334518}
   - component: {fileID: 133334517}
   m_Layer: 9
-  m_Name: Cristal (22)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4253,7 +4253,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -11855,7 +11855,7 @@ GameObject:
   - component: {fileID: 587134959}
   - component: {fileID: 587134958}
   m_Layer: 9
-  m_Name: Cristal (13)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12366,7 +12366,7 @@ GameObject:
   - component: {fileID: 670734056}
   - component: {fileID: 670734055}
   m_Layer: 9
-  m_Name: Cristal (18)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12700,7 +12700,7 @@ GameObject:
   - component: {fileID: 712687996}
   - component: {fileID: 712687995}
   m_Layer: 9
-  m_Name: Cristal (8)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12855,7 +12855,7 @@ GameObject:
   - component: {fileID: 718466190}
   - component: {fileID: 718466189}
   m_Layer: 9
-  m_Name: Cristal (12)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13010,7 +13010,7 @@ GameObject:
   - component: {fileID: 728379862}
   - component: {fileID: 728379861}
   m_Layer: 9
-  m_Name: Cristal (17)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13240,7 +13240,7 @@ GameObject:
   - component: {fileID: 732194245}
   - component: {fileID: 732194244}
   m_Layer: 9
-  m_Name: Cristal (14)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13695,7 +13695,7 @@ GameObject:
   - component: {fileID: 782429540}
   - component: {fileID: 782429539}
   m_Layer: 9
-  m_Name: Cristal (2)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13850,7 +13850,7 @@ GameObject:
   - component: {fileID: 792358442}
   - component: {fileID: 792358441}
   m_Layer: 9
-  m_Name: Cristal (16)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14486,7 +14486,7 @@ GameObject:
   - component: {fileID: 878078751}
   - component: {fileID: 878078750}
   m_Layer: 9
-  m_Name: Cristal (3)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16957,7 +16957,7 @@ GameObject:
   - component: {fileID: 1167722048}
   - component: {fileID: 1167722047}
   m_Layer: 9
-  m_Name: Cristal (23)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19202,7 +19202,7 @@ GameObject:
   - component: {fileID: 1412359405}
   - component: {fileID: 1412359404}
   m_Layer: 9
-  m_Name: Cristal (6)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19357,7 +19357,7 @@ GameObject:
   - component: {fileID: 1470189600}
   - component: {fileID: 1470189599}
   m_Layer: 9
-  m_Name: Cristal (5)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39486,7 +39486,7 @@ GameObject:
   - component: {fileID: 1739021135}
   - component: {fileID: 1739021134}
   m_Layer: 9
-  m_Name: Cristal
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39641,7 +39641,7 @@ GameObject:
   - component: {fileID: 1739637514}
   - component: {fileID: 1739637513}
   m_Layer: 9
-  m_Name: Cristal (1)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69623,7 +69623,7 @@ GameObject:
   - component: {fileID: 1855208146}
   - component: {fileID: 1855208145}
   m_Layer: 9
-  m_Name: Cristal (11)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70019,8 +70019,8 @@ PolygonCollider2D:
       - {x: 32.090233, y: 27.245386}
       - {x: -4.6270256, y: 27.171888}
       - {x: -4.523813, y: -26.830801}
-      - {x: 74.8753, y: -26.309872}
-      - {x: 74.63879, y: -47.61997}
+      - {x: 66.6572, y: -26.148731}
+      - {x: 66.74297, y: -48.345097}
       - {x: 110.47534, y: -47.635567}
       - {x: 110.40013, y: -25.85693}
       - {x: 99.146194, y: -25.97279}
@@ -70054,7 +70054,7 @@ GameObject:
   - component: {fileID: 1891997849}
   - component: {fileID: 1891997848}
   m_Layer: 9
-  m_Name: Cristal (4)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70285,7 +70285,7 @@ GameObject:
   - component: {fileID: 1909874923}
   - component: {fileID: 1909874922}
   m_Layer: 9
-  m_Name: Cristal (10)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70977,7 +70977,7 @@ GameObject:
   - component: {fileID: 1952518529}
   - component: {fileID: 1952518528}
   m_Layer: 9
-  m_Name: Cristal (20)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71739,7 +71739,7 @@ GameObject:
   - component: {fileID: 1985369956}
   - component: {fileID: 1985369955}
   m_Layer: 9
-  m_Name: Cristal (15)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72128,7 +72128,7 @@ GameObject:
   - component: {fileID: 1996450568}
   - component: {fileID: 1996450567}
   m_Layer: 9
-  m_Name: Cristal (19)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73196,7 +73196,7 @@ GameObject:
   - component: {fileID: 2124152548}
   - component: {fileID: 2124152547}
   m_Layer: 9
-  m_Name: Cristal (7)
+  m_Name: GrosCristaux
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -73426,7 +73426,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.50105286, y: -0.39033723, z: -10.5}
+  m_LocalPosition: {x: -4.2930794, y: -0.3873126, z: -10.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
