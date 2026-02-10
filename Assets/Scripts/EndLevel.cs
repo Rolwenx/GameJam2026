@@ -39,6 +39,7 @@ public class EndLevel : MonoBehaviour
 
         panel.SetActive(true);
         // Save tutorial completion
+        Debug.Log("Level " + currentLevel + " completed. Saving progress.");
         PlayerPrefs.SetInt("Level_"+currentLevel+"_Completed", 1);
         PlayerPrefs.Save();
 

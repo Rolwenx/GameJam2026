@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class SwitchToParam : MonoBehaviour
+public class SwitchMenu : MonoBehaviour
 {
     public GameObject menuPrincipal;
     public GameObject menuParametres;
@@ -11,9 +11,15 @@ public class SwitchToParam : MonoBehaviour
 
     void Start()
     {
-        menuPrincipal.SetActive(true);
+        if(menuPrincipal.name == "MenuPause"){
+                menuPrincipal.SetActive(false);
+            }
+            else {
+                menuPrincipal.SetActive(true);
+        }
         menuParametres.SetActive(false);
-        menuElementsDébloqués.SetActive(false);
+        if (menuElementsDébloqués != null)
+            menuElementsDébloqués.SetActive(false);
 
     }
     
@@ -27,7 +33,8 @@ public class SwitchToParam : MonoBehaviour
     {
         menuPrincipal.SetActive(true);
         menuParametres.SetActive(false);
-        menuElementsDébloqués.SetActive(false);
+        if (menuElementsDébloqués != null)
+            menuElementsDébloqués.SetActive(false);
     }
 
     public void QuitGame()

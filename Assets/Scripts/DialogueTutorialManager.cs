@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using TMPro;
+using System.Collections;
 
 public class DialogueTutorialManager : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class DialogueTutorialManager : MonoBehaviour
     private string[] lines;
     private int index;
     private bool active;
+
+    // ✅ AJOUT: Typewriter
+    [SerializeField] private float charDelay = 0.02f;
+    private Coroutine typeCoroutine;
+    private bool isTyping;
 
     private void LateUpdate()
     {
@@ -33,7 +39,9 @@ public class DialogueTutorialManager : MonoBehaviour
         active = true;
 
         panel.SetActive(true);
-        dialogueText.text = lines[index];
+
+        // ✅ AJOUT: au lieu d'afficher direct
+        PlayLine(lines[index]);
     }
 
     public void StartIndication(string speaker, string[] newLines)
@@ -45,7 +53,9 @@ public class DialogueTutorialManager : MonoBehaviour
         active = true;
 
         panel.SetActive(true);
-        dialogueText.text = lines[index];
+
+        // ✅ AJOUT: au lieu d'afficher direct
+        PlayLine(lines[index]);
     }
 
     private void Update()
@@ -54,6 +64,13 @@ public class DialogueTutorialManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            // ✅ AJOUT: si on clique pendant le typewriter -> afficher instant
+            if (isTyping)
+            {
+                FinishTypingInstant();
+                return;
+            }
+
             index++;
 
             if (index >= lines.Length)
@@ -62,7 +79,8 @@ public class DialogueTutorialManager : MonoBehaviour
             }
             else
             {
-                dialogueText.text = lines[index];
+                // ✅ AJOUT: au lieu d'afficher direct
+                PlayLine(lines[index]);
             }
         }
     }
@@ -73,5 +91,50 @@ public class DialogueTutorialManager : MonoBehaviour
         panel.SetActive(false);
         Time.timeScale = 1f;
         OnDialogueFinished?.Invoke();
+    }
+
+    // ✅ AJOUT: fonctions typewriter
+    private void PlayLine(string line)
+    {
+        if (typeCoroutine != null)
+            StopCoroutine(typeCoroutine);
+
+        typeCoroutine = StartCoroutine(TypeLine(line));
+    }
+
+    private IEnumerator TypeLine(string line)
+    {
+        isTyping = true;
+
+        dialogueText.text = line;
+
+        // IMPORTANT avec certaines fonts TMP
+        dialogueText.ForceMeshUpdate();
+
+        dialogueText.maxVisibleCharacters = 0;
+
+        int total = dialogueText.textInfo.characterCount;
+        for (int i = 0; i <= total; i++)
+        {
+            dialogueText.maxVisibleCharacters = i;
+
+            // Realtime car Time.timeScale peut être 0
+            yield return new WaitForSecondsRealtime(charDelay);
+        }
+
+        isTyping = false;
+        typeCoroutine = null;
+    }
+
+    private void FinishTypingInstant()
+    {
+        if (typeCoroutine != null)
+            StopCoroutine(typeCoroutine);
+
+        dialogueText.ForceMeshUpdate();
+        dialogueText.maxVisibleCharacters = int.MaxValue;
+
+        isTyping = false;
+        typeCoroutine = null;
     }
 }
