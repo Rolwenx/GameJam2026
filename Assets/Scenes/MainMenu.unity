@@ -211,8 +211,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 609582092}
-        m_TargetAssemblyTypeName: SwitchToParam, Assembly-CSharp
+      - m_Target: {fileID: 609582095}
+        m_TargetAssemblyTypeName: GestionVolume, Assembly-CSharp
         m_MethodName: ChangeVolume
         m_Mode: 1
         m_Arguments:
@@ -1811,6 +1811,7 @@ GameObject:
   - component: {fileID: 609582093}
   - component: {fileID: 609582092}
   - component: {fileID: 609582094}
+  - component: {fileID: 609582095}
   m_Layer: 0
   m_Name: Menumanager
   m_TagString: Untagged
@@ -1833,8 +1834,6 @@ MonoBehaviour:
   menuPrincipal: {fileID: 2062669436}
   menuParametres: {fileID: 748495440}
   "menuElementsD\xE9bloqu\xE9s": {fileID: 275454220}
-  sliderVolume: {fileID: 43436468}
-  musicAudioSource: {fileID: 609582094}
 --- !u!4 &609582093
 Transform:
   m_ObjectHideFlags: 0
@@ -1947,6 +1946,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &609582095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609582091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c63d1eef78d40f94f88db36c1cc106b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sliderVolume: {fileID: 43436468}
+  musicAudioSource: {fileID: 609582094}
+  volumeValueText: {fileID: 892753921}
 --- !u!1 &631601799
 GameObject:
   m_ObjectHideFlags: 0
