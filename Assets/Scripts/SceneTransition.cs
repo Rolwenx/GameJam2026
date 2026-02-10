@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SceneTransition : MonoBehaviour
 {
+
+    [SerializeField] private string sceneName;
+
     public void GoToTown()
     {
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
@@ -21,5 +24,9 @@ public class SceneTransition : MonoBehaviour
         PlayerPrefs.SetString("LastScene", SceneManager.GetActiveScene().name);
         PlayerPrefs.Save();
         SceneManager.LoadScene("Generator");    
+    }
+    public void GoTo(string scene)
+    {
+        SceneManager.LoadScene(scene); 
     }
 }
