@@ -25,7 +25,7 @@ public class SeeLoreMainMenu : MonoBehaviour
     {
         LoreCanvas.SetActive(true);
         MenuLoreCanvas.SetActive(false);
-        TitleScene.text = "Eléments level 1";
+        TitleScene.text = "<sketchy>Eléments level 1";
         if (PlayerPrefs.GetInt("Lore_S1_L1") == 1)
             LoreText1.text = Scene1Lore[0];
         else
@@ -42,7 +42,7 @@ public class SeeLoreMainMenu : MonoBehaviour
     {
         LoreCanvas.SetActive(true);
             MenuLoreCanvas.SetActive(false);
-        TitleScene.text = "Eléments level 2";
+        TitleScene.text = "<sketchy>Eléments level 2";
         if (PlayerPrefs.GetInt("Lore_S2_L1") == 1)
             LoreText1.text = Scene2Lore[0];
         else
@@ -58,7 +58,7 @@ public class SeeLoreMainMenu : MonoBehaviour
     {
         LoreCanvas.SetActive(true);
             MenuLoreCanvas.SetActive(false);
-        TitleScene.text = "Eléments level 3"    ;
+        TitleScene.text = "<sketchy>Eléments level 3";
         if (PlayerPrefs.GetInt("Lore_S3_L1") == 1)
             LoreText1.text = Scene3Lore[0];
         else
@@ -74,7 +74,7 @@ public class SeeLoreMainMenu : MonoBehaviour
     {
         LoreCanvas.SetActive(true);
             MenuLoreCanvas.SetActive(false);
-        TitleScene.text = "Eléments level 4"    ;
+        TitleScene.text = "<sketchy>Eléments level 4";
         if (PlayerPrefs.GetInt("Lore_S4_L1") == 1)
             LoreText1.text = Scene4Lore[0];
         else
