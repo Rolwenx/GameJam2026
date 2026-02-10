@@ -36,11 +36,16 @@ public class CitySceneManager : MonoBehaviour
         panel.SetActive(false);
         level_choice.SetActive(false);
 
-        //if (PlayerPrefs.GetInt(CITY_VISITED_KEY, 0) == 0)
-        //{
+        if (PlayerPrefs.GetInt(CITY_VISITED_KEY, 0) == 0)
+        {
             Debug.Log("City intro started");
             StartCoroutine(FirstTimeCityIntro());
-        //}
+            
+        }
+        else
+        {
+            level_choice.SetActive(true);
+        }
     }
 
     private void SetupPlayerSpawn()

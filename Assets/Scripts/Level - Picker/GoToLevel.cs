@@ -122,6 +122,6 @@ public class GoToLevel : MonoBehaviour
 
         if (!previousCompleted) return;
 
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("Level "+(requiredPreviousLevel+1)    );
     }
 }
