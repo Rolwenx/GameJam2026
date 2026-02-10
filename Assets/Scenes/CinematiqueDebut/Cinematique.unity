@@ -9842,8 +9842,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
+  m_sharedMaterial: {fileID: -8267736675288204585, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16757,7 +16757,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.75, y: 1.125}
+    oldSize: {x: 0.75, y: 1.0625}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -23792,8 +23792,8 @@ MonoBehaviour:
   m_text: "Depuis plusieurs ann\xE9es, pour une raison dont on ignore, la lumi\xE8re
     ne fut plus dans le petit village Ecosia."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
+  m_sharedMaterial: {fileID: -8267736675288204585, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

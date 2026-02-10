@@ -381,9 +381,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11875999}
-        m_TargetAssemblyTypeName: GoingBackToMainMenu, Assembly-CSharp
-        m_MethodName: LoadMainMenu
+      - m_Target: {fileID: 11875998}
+        m_TargetAssemblyTypeName: creditsScript, Assembly-CSharp
+        m_MethodName: LoadTown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

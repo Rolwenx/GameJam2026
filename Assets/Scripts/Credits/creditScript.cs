@@ -19,9 +19,9 @@ public class creditsScript : MonoBehaviour
         rectTransform.anchoredPosition += new Vector2(0, scrollSpeed * Time.deltaTime);
     }
 
-    public void LoadMainMenu()
+    public void LoadTown()
     {
         // Load the main menu scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Town");
     }
 }
