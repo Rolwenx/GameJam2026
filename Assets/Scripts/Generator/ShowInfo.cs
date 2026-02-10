@@ -20,8 +20,15 @@ public class ShowInfo : MonoBehaviour
             textInfo.gameObject.SetActive(true);
         }
         else {
-            textInfo.text = $"Déposer le fragment";
-            textInfo.gameObject.SetActive(true);
+            if (PlayerPrefs.GetInt("LV"+tag[2]+"Valide", 0) == 1){
+                textInfo.text = $"Fragment déjà déposé";
+                textInfo.gameObject.SetActive(true);
+            }
+            else{
+                textInfo.text = $"Fragment possédé";
+                textInfo.gameObject.SetActive(true);
+            }
+
         }
     }
 
