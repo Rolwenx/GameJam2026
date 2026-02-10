@@ -11,13 +11,22 @@ public class PlayerTakeCristal : MonoBehaviour
 
     private bool hasbeenTaken = false;
 
+    private bool HoldingCrystal;
+
+
+    void Start()
+    {
+        HoldingCrystal = false;
+    }
+
     private void Update()
     {
-        if (nearbyCrystal != null && Input.GetKeyDown(KeyCode.E))
+        if (nearbyCrystal != null && Input.GetKeyDown(KeyCode.E) && !HoldingCrystal)
         {
             Pickup(nearbyCrystal);
             nearbyCrystal = null;
             hasbeenTaken = true;
+            HoldingCrystal = true;
         }
 
         if (hasbeenTaken && Input.GetKeyDown(KeyCode.F))
@@ -33,6 +42,7 @@ public class PlayerTakeCristal : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
             }
             
+            HoldingCrystal = false;
         }
 
 
