@@ -17,6 +17,9 @@ public class PlayerTopDownController : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lastDirection = Vector2.down; // default facing
 
+    public AudioSource audioSource;
+    private bool isMoving;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -31,8 +34,18 @@ public class PlayerTopDownController : MonoBehaviour
     void Update()
     {
         // Store last direction ONLY if moving
-        if (moveInput != Vector2.zero)
+        if (moveInput != Vector2.zero){
             lastDirection = moveInput;
+            isMoving = true;
+
+        }
+    else{
+            isMoving = false;
+        }
+
+         if (isMoving && !audioSource.isPlaying) audioSource.Play();
+    if (!isMoving && audioSource.isPlaying) audioSource.Pause(); // ou Stop()
+
 
         Vector2 animDirection = (moveInput == Vector2.zero)
             ? lastDirection

@@ -17,6 +17,8 @@ public class EndLevel : MonoBehaviour
     [SerializeField] private float fadeDuration = 2f;
     [SerializeField] private float waitAfterFade = 2f;
 
+    public AudioSource audioSource;
+
     private void Awake()
     {
         panel.SetActive(false);
@@ -29,6 +31,8 @@ public class EndLevel : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
+        if (audioSource != null) audioSource.Play();
+
 
         StartCoroutine(EndSequence());
     }

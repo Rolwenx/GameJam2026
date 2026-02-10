@@ -15,6 +15,8 @@ public class PorteManager : MonoBehaviour
     public bool hasTutorialbeenDone = false;
     public static event Action OnTutorialFinalDoorOpened;
 
+    public AudioSource audioSourceDoorOpen;
+
     private void Start()
     {
         int lastIndex = transform.childCount - 1;
@@ -29,6 +31,8 @@ public class PorteManager : MonoBehaviour
 
     private void HandleFinalDoor()
     {
+
+        audioSourceDoorOpen.Play();
         if(finalTriggered) return;
 
 

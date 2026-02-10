@@ -11,6 +11,8 @@
 
         public Light2D light2D;
 
+        public AudioSource audioSource;
+
         private void Awake()
         {
             if (rune == null) rune = GetComponent<SpriteRenderer>();
@@ -33,9 +35,11 @@
                 // on fait la mm chose avec la lumière pour que ça fasse plus joli
                 if (light2D != null) light2D.intensity = 0.7f;
                 light2D.color = new Color32(0, 128, 251, 255);
+                if (PlayerPrefs.GetInt("LV1Valide", 0) == 0) audioSource.Play();
                 //player preference pour sauvegarder la progression du joueur, à utiliser pour le menu de sélection de niveau
                 PlayerPrefs.SetInt("LV1Valide", 1);
                 PlayerPrefs.Save();
+
                 
             }
             else if (gameObject.tag == "LV2" && PlayerPrefs.GetInt("Level_2_Completed", 0) == 1)
@@ -44,14 +48,17 @@
                 rune.color = new Color32(0, 255, 16, 255);
                 if (light2D != null) light2D.intensity = 0.7f;
                 light2D.color = new Color32(0, 255, 16, 255);
+                if (PlayerPrefs.GetInt("LV2Valide", 0) == 0) audioSource.Play();
                 PlayerPrefs.SetInt("LV2Valide", 1);
                 PlayerPrefs.Save();
+
             }
             else if (gameObject.tag == "LV3" && PlayerPrefs.GetInt("Level_3_Completed", 0) == 1)
             {   
                 rune.color = new Color32(255, 33, 0, 255);
                 if (light2D != null) light2D.intensity = 0.7f;
                 light2D.color = new Color32(255, 33, 0, 255);
+                if (PlayerPrefs.GetInt("LV3Valide", 0) == 0) audioSource.Play();
                 PlayerPrefs.SetInt("LV3Valide", 1);
                 PlayerPrefs.Save();
             }
@@ -60,8 +67,10 @@
                 rune.color = new Color32(255, 255, 255, 255);
                 if (light2D != null) light2D.intensity = 0.7f;
                 light2D.color = new Color32(255, 255, 255, 255);
+                if (PlayerPrefs.GetInt("LV4Valide", 0) == 0) audioSource.Play();
                 PlayerPrefs.SetInt("LV4Valide", 1);
                 PlayerPrefs.Save();
+
             }
         }
 

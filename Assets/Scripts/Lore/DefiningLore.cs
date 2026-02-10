@@ -18,6 +18,8 @@ public class DefiningLore : MonoBehaviour
     [SerializeField] private float fadeOutDuration = 0.25f;
     private Coroutine fadeOutCo;
 
+    public AudioSource audioSource;
+
     private void Awake()
     {
         allScenesLore = new string[][]
@@ -54,6 +56,7 @@ public class DefiningLore : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        audioSource.Play();
         if (!collision.gameObject.CompareTag("Player")) return;
 
         string currentSceneName = SceneManager.GetActiveScene().name;

@@ -13,6 +13,8 @@ public class OuverturePorte : MonoBehaviour
 
     public bool opened = false;
 
+    public AudioSource audioSource;
+
     private void Start()
     {
         historyHit = player.GetComponent<PlayerAim>().historyHit;
@@ -33,6 +35,7 @@ public class OuverturePorte : MonoBehaviour
         opened = true;
         OnDoorOpened?.Invoke();
         porte.SetActive(false);
+        if (audioSource != null) audioSource.Play();
 
         foreach (Transform gros in neededCristaux)
         {

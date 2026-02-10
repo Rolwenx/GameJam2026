@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private bool isRunning;
     private bool jumpPressed;
 
+    public AudioSource walkingAudioSource, jumpingAudioSource, runningAudioSource;
+
     
 
     private void Awake()
@@ -79,6 +81,28 @@ public class PlayerMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
         animator.SetBool("IsGrounded", isGrounded);
 
+        bool isMoving = Mathf.Abs(x) > 0.01f;
+
+        if (isGrounded && isMoving)
+        {
+            if (isRunning)
+            {
+                if (walkingAudioSource != null && walkingAudioSource.isPlaying) walkingAudioSource.Stop();
+                if (runningAudioSource != null && !runningAudioSource.isPlaying) runningAudioSource.Play();
+            }
+            else
+            {
+                if (runningAudioSource != null && runningAudioSource.isPlaying) runningAudioSource.Stop();
+                if (walkingAudioSource != null && !walkingAudioSource.isPlaying) walkingAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (walkingAudioSource != null && walkingAudioSource.isPlaying) walkingAudioSource.Stop();
+            if (runningAudioSource != null && runningAudioSource.isPlaying) runningAudioSource.Stop();
+        }
+
+
         float currentSpeed = isRunning ? runSpeed : walkSpeed;
 
         // applique le mouvement horizontal
@@ -90,6 +114,10 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = new Vector2(body.linearVelocity.x, 0f);
             body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
             animator.SetTrigger("Jump");
+            if (walkingAudioSource != null && walkingAudioSource.isPlaying) walkingAudioSource.Stop();
+            if (runningAudioSource != null && runningAudioSource.isPlaying) runningAudioSource.Stop();
+
+            jumpingAudioSource.Play();
         }
         jumpPressed = false;
 

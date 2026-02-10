@@ -5,30 +5,39 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Level 3.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: ef13cf470e8f84e6d91494220cb4dfe5
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
     path: Assets/Scenes/Town.unity
     guid: 113897f27236542379b46f253c7b0178
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: dde9bd4afe3c949aea1e1bfa255b7ce1
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: d24ec46a2eaa4fc4b9275a9e86bfebba
   - enabled: 1
+    path: Assets/Scenes/CreditScene/Credit.unity
+    guid: 4886311a426bcb149995cf6b76d5781f
+  - enabled: 1
     path: Assets/Scenes/Generator.unity
     guid: a58b50163b266b147bd82c88f718417e
-  - enabled: 0
+  - enabled: 1
+    path: Assets/Scenes/CinematiqueDebut/Cinematique.unity
+    guid: 38999405ab934495ea808ae8389d4068
+  - enabled: 1
     path: Assets/Scenes/Level 4.unity
     guid: b0e26bf7676c5c34fa2bb58aefbd5e5a
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Pick Level.unity
     guid: 1fa9ce4e589854a6b8a52269314b59e2
+  - enabled: 1
+    path: Assets/Scenes/CinematiqueDebut/IntroCinematiqueDebut.unity
+    guid: 38051fe67a7f540abb8dcba061fbd92f
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
