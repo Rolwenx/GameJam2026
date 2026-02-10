@@ -119,7 +119,7 @@ public class DefiningLore : MonoBehaviour
         if (allLoreRead)
         {
             // ✅ AJOUT: afficher un message de déblocage
-            loreText.text = "<wave uniformity=0.02>Tu as découvert tous les éléments de l'histoire ! Tu peux maintenant accéder au dernier secret caché dans le menu principal.";
+            loreText.text = "<wave uniformity=0.02>Tu as découvert tous les éléments de l'histoire ! Tu peux maintenant accéder au dernier secret au menu principal.";
             // attendre 5 sec avant d'effacer le texte
             Invoke(nameof(ClearLoreText), 8f);
         }
