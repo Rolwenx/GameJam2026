@@ -83,4 +83,9 @@ public class GamePauseManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
