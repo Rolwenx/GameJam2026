@@ -53,6 +53,8 @@ public class EndingForPlayer : MonoBehaviour
             if (playerLight.pointLightOuterRadius <= 0f)
             {
                 playerLight.pointLightOuterRadius = 0f;
+                PlayerPrefs.SetInt("GameFinished", 1);
+                PlayerPrefs.Save();
                 SceneManager.LoadScene(nextSceneName);
             }
         }
