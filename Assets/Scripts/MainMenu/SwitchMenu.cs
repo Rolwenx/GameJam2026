@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class SwitchMenu : MonoBehaviour
 {
     public GameObject menuPrincipal;
@@ -46,6 +46,11 @@ public class SwitchMenu : MonoBehaviour
     {
         menuPrincipal.SetActive(false);
         menuElementsDébloqués.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("IntroCinematiqueDebut");
     }
 
 
