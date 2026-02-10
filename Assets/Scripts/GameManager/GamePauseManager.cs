@@ -111,7 +111,15 @@ public class GamePauseManager : MonoBehaviour
 
     public void QuitGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        if(SceneManager.GetActiveScene().name == "MainMenu"){
+            Application.Quit(); // marche uniquement dans une build, pas dans l'éditeur
+        }
+        else if ((SceneManager.GetActiveScene().name == "Town") || (SceneManager.GetActiveScene().name == "Generator") || (SceneManager.GetActiveScene().name == "Pick Level") ){
+            SceneManager.LoadScene("MainMenu");
+        }
+        else {
+            SceneManager.LoadScene("Town");
+        }
     }
 
     public void ReloadScene()
