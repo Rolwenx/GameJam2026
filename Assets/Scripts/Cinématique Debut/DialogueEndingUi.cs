@@ -34,141 +34,289 @@ public class DialogueEndingUi : MonoBehaviour
         }
     }
 
+    // ───────── ACTE 3 ─────────
 
-    public void Show_Player_Intro()
+    public void Show_Player_AllCrystalsDone()
     {
         StartDialogue(
             "Toi",
             new string[]
             {
-                "Je sais pas pourquoi je me tracasse à checker si on me suit…",
-                "À part moi, personne ne vient jamais dans ces bois."
+                "C’est fait. Tous les cristaux sont activés.",
+                "Et la lumière est presque totalement revenue !",
+                "Mais pourquoi rien ne se passe…",
+                "Bibi m’avait dit que les livres mentionnaient que le centre du générateur devait s’allumer.",
+                "…"
             }
         );
     }
 
-    public void Show_Player_Cristal()
+    public void Show_Player_CircleLightsUp()
     {
         StartDialogue(
             "Toi",
             new string[]
             {
-                "Chaque jour, je viens ici. Et à chaque fois, j’espère que tu t’allumeras.",
-                "Que tu donneras peut-être signe de vie.",
-                "Ça fait cinq ans… et toujours rien."
+                "Oh…",
+                "Ça marche vraiment !"
             }
         );
     }
 
-    public void Show_Player_Cristal_JustLitUp()
+    public void Show_Hector_Intro()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "Je savais que ce jour arriverait."
+            }
+        );
+    }
+
+    public void Show_Player_HeroSpeech()
     {
         StartDialogue(
             "Toi",
             new string[]
             {
-                "Que...?",
-                "Il s'est allumé ?!",
+                "Mais il faut se réjouir, Hector !",
+                "J’ai ramené la lumière au village.",
+                "Je suis le héros !"
             }
         );
     }
 
-    // player loin du cristal là
-    public void Show_Player_Cristal_Unlit()
+    public void Show_Hector_Warning()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "…Tu ne comprends pas encore."
+            }
+        );
+    }
+
+    public void Show_Player_Confused()
     {
         StartDialogue(
             "Toi",
             new string[]
             {
-                "Non, non, non revient !",
-                "Attends j'ai pas rêvé n'est-ce pas...?",
+                "Là tu commences à me perdre.",
+                "Tu parles de quoi ?"
             }
         );
     }
 
-    // bibi arrive près de lui
-    public void Show_Bibi_Intro()
+    public void Show_Hector_This()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "…ça."
+            }
+        );
+    }
+
+    public void Show_Player_PanicLight()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "Mais…",
+                "Il se passe quoi là ?"
+            }
+        );
+    }
+
+    public void Show_Hector_CycleReveal()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "Tu n’as pas juste ramené la lumière.",
+                "Tu as ramené un cycle maudit que l’on avait tout fait pour éviter."
+            }
+        );
+    }
+
+    public void Show_Player_CycleQuestion()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "Le… cycle ?"
+            }
+        );
+    }
+
+    public void Show_Hector_Truth()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "La lumière n’a jamais disparu.",
+                "Elle attendait quelque chose.",
+                "Quelqu’un."
+            }
+        );
+    }
+
+    public void Show_Hector_You()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "Toi."
+            }
+        );
+    }
+
+    public void Show_Hector_Leave()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "Tu n’aurais jamais dû commencer cette mission."
+            }
+        );
+    }
+
+    public void Show_Player_Abandoned()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "Non !",
+                "Tu ne peux pas me laisser là !"
+            }
+        );
+    }
+
+    public void Show_Player_PanicGrottes()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "C’est pas possible…",
+                "Toute cette galère dans ces grottes pour rien.",
+                "Je comprends même pas ce qui se passe."
+            }
+        );
+    }
+
+    // ───────── ACTE 5 : BIBI ─────────
+
+    public void Show_Bibi_Arrives()
     {
         StartDialogue(
             "Bibi",
             new string[]
             {
-                "NOOOON !",
-                "Moi aussi je l’ai vu !",
-                "Le cristal s’est allumé, j’en suis sûr !"
+                "Hé !",
+                "Mais…",
+                "Qu’est-ce qu’il se passe ici ?!"
             }
         );
     }
 
-    public void Show_Bibi_CristalLit()
+    public void Show_Player_CallsBibi()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "Bibi…",
+                "Bibi, aide-moi…"
+            }
+        );
+    }
+
+    public void Show_Player_LastCry()
+    {
+        StartDialogue(
+            "Toi",
+            new string[]
+            {
+                "BIBI—"
+            }
+        );
+    }
+
+    public void Show_Bibi_Shocked()
     {
         StartDialogue(
             "Bibi",
             new string[]
             {
-                "C'est un miracle ce qui se passe là, j'ai bien fait de te suivre.",
-                "Mais ce n'est pas le plus important !",
-                "Les anciens livres disaient que si un cristal s'allume, on pouvait l'utiliser pour activer d'autres cristaux.",
-                "Mais qu'il ne s'active que pour la bonne personne.",
-                "Peut-être que c'est moi, ehehe."
+                "…"
             }
         );
     }
 
-    // bibi s'approche du cristal mais rien ne se passe
-
-    public void Show_Player_BeforeTrying()
+    public void Show_Bibi_Whisper()
     {
         StartDialogue(
-            "Toi",
+            "Bibi",
+            new string[]
+            {
+                "Hé…",
+                "Tu m’entends ?",
+                "T’es là ?",
+                "Qu’est-ce qu’il se passe dans cette ville…"
+            }
+        );
+    }
+
+    // ───────── ACTE 6 : ÉPILOGUE ─────────
+
+    public void Show_Hector_Final()
+    {
+        StartDialogue(
+            "Hector",
+            new string[]
+            {
+                "Allez, viens Bibi.",
+                "J’ai préparé du thé.",
+                "Et cette fois, j’ai pu voir les ingrédients.",
+                "Il est exquis."
+            }
+        );
+    }
+
+    public void Show_Bibi_Leaves()
+    {
+        StartDialogue(
+            "Bibi",
+            new string[]
+            {
+                "Oh yes !",
+                "J’arriveeee !"
+            }
+        );
+    }
+
+    public void Show_Bibi_LastView()
+    {
+        StartDialogue(
+            "Bibi",
             new string[]
             {
                 "..."
             }
         );
     }
-
-    // player s'approche et
-    // cristal s'allume
-
-    public void Show_Bibi_CristalAfterPlayerTry()
-    {
-        StartDialogue(
-            "Bibi",
-            new string[]
-            {
-                "Toi...? Mais pourquoi maintenant, ça fait 5 ans que tu viens et il ne se passait rien !"
-            }
-        );
-    }
-
-    // player regarde Bibi
-    public void Show_Player_WeGoGrotte()
-    {
-        StartDialogue(
-            "Toi",
-            new string[]
-            {
-                "Tu penses à la même chose que moi, maintenant qu'on a ce cristal allumé ?"
-            }
-        );
-    }
-
-    // bibi look at player
-
-    public void Show_Bibi_WeGoGrotte()
-    {
-        StartDialogue(
-            "Bibi",
-            new string[]
-            {
-                "ALLONS VISITER UNE DES GROTTES",
-                "LETS GOOOO",
-                "N'oublie pas de ramasser le cristal."
-            }
-        );
-    }
-
-    // bibi et player vont à droite 
 
     // ───────── CORE ─────────
 
@@ -188,7 +336,6 @@ public class DialogueEndingUi : MonoBehaviour
         speakerName.text = currentSpeaker;
         ShowCurrentLine();
 
-        // pause timeline
         if (director != null)
             director.Pause();
     }
@@ -215,7 +362,6 @@ public class DialogueEndingUi : MonoBehaviour
     {
         Hide();
 
-        // resume timeline
         if (director != null)
             director.Resume();
     }

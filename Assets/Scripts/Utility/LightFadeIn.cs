@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SimpleLightFadeIn : MonoBehaviour
+public class LightFadeIn : MonoBehaviour
 {
     public float fadeSpeed = 2f;
     public float maxIntensity = 5f;
