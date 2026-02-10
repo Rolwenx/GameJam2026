@@ -64,10 +64,9 @@ public class SwitchMenu : MonoBehaviour
 
         // 2) reset tout
         PlayerPrefs.DeleteAll();
-
-        // 3) remettre le son
         PlayerPrefs.SetFloat(PREF_VOLUME, volume);
-        PlayerPrefs.Save();
+        InitializeNewGamePrefs();
+
 
         SceneManager.LoadScene("IntroCinematiqueDebut");
     }
@@ -80,7 +79,39 @@ public class SwitchMenu : MonoBehaviour
         SceneManager.LoadScene(lastScene);
     }
     
+    private void InitializeNewGamePrefs()
+    {
+        // audio
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+            PlayerPrefs.SetFloat("MusicVolume", 1f);
 
+        // level progression
+        for (int i = 1; i <= 4; i++)
+        {
+            PlayerPrefs.SetInt($"Level_{i}_Completed", 0);
+            PlayerPrefs.SetInt($"LV{i}Valide", 0);
+        }
+
+        PlayerPrefs.SetInt("AllLevelsCompleted", 0);
+        PlayerPrefs.SetInt("GameFinished", 0);
+
+        // Lore
+        for (int s = 1; s <= 4; s++)
+        {
+            for (int l = 1; l <= 2; l++)
+            {
+                PlayerPrefs.SetInt($"Lore_S{s}_L{l}", 0);
+            }
+        }
+
+        PlayerPrefs.SetInt("AllLoreRead", 0);
+
+        // scene, cinematique
+        PlayerPrefs.SetString("LastScene", "IntroCinematiqueDebut");
+        PlayerPrefs.SetInt("CityScene_Visited", 0);
+
+        PlayerPrefs.Save();
+    }
 
 
 
