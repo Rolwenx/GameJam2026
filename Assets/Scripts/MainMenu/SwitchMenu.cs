@@ -27,6 +27,8 @@ public class SwitchMenu : MonoBehaviour
         menuParametres.SetActive(false);
         if (menuElementsDébloqués != null)
             menuElementsDébloqués.SetActive(false);
+        
+        RefreshContinuerText();
 
     }
     
@@ -74,8 +76,15 @@ public class SwitchMenu : MonoBehaviour
     public void Continuer()
     {
         // Chercher la dernière scène jouée (en se basant sur les niveaux complétés)
+        string current = SceneManager.GetActiveScene().name;
         
         string lastScene = PlayerPrefs.GetString("LastScene",SceneManager.GetActiveScene().name);
+
+        if (lastScene == current || lastScene == "MainMenu")
+        {
+            if (ContinuerButton != null)
+            return;
+        }
         SceneManager.LoadScene(lastScene);
     }
     
@@ -112,6 +121,24 @@ public class SwitchMenu : MonoBehaviour
         PlayerPrefs.SetInt("CityScene_Visited", 0);
 
         PlayerPrefs.Save();
+    }
+
+    void Update()
+    {
+        RefreshContinuerText();
+    }
+
+
+    private void RefreshContinuerText()
+    {
+        if (ContinuerButton == null) return;
+
+        string current = SceneManager.GetActiveScene().name;
+        string lastScene = PlayerPrefs.GetString("LastScene", current);
+
+        ContinuerButton.text = (lastScene == current || lastScene == "MainMenu")
+            ? "<sketchy>Aucun essai"
+            : "<sketchy>Continuer";
     }
 
 
