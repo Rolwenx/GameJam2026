@@ -9,7 +9,8 @@ public class ReloadSceneGeneral : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // reload scene actuelle
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
