@@ -317,7 +317,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2731,8 +2731,8 @@ Transform:
   m_GameObject: {fileID: 1230230836}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5083226, y: 0.5168735, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.5083226, y: 0.5921, z: -0.1}
+  m_LocalScale: {x: 1, y: 1.0139, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1482718408}
@@ -3259,8 +3259,8 @@ Transform:
   m_GameObject: {fileID: 1433541180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5783226, y: 0.6968735, z: -0.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.5783226, y: 0.7746, z: -0.2}
+  m_LocalScale: {x: 1, y: 1.0139, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1482718408}
@@ -4091,8 +4091,8 @@ Transform:
   m_GameObject: {fileID: 1609795236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6115067, y: -1.6288347, z: -0.3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.6115067, y: -1.5835, z: -0.3}
+  m_LocalScale: {x: 1, y: 1.0139, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1482718408}
@@ -4547,8 +4547,8 @@ Transform:
   m_GameObject: {fileID: 1718669285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2983226, y: -3.6031265, z: -0.7}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.2983226, y: -3.8575, z: -0.7}
+  m_LocalScale: {x: 1, y: 1.2412, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1482718408}
@@ -5161,8 +5161,8 @@ Transform:
   m_GameObject: {fileID: 1867247394}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.4683226, y: 0.5668735, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.4683226, y: 0.6428, z: 0}
+  m_LocalScale: {x: 1, y: 1.0139, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1482718408}

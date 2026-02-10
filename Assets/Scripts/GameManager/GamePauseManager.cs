@@ -5,6 +5,7 @@ public class GamePauseManager : MonoBehaviour
 {
     public GameObject PauseMenu;
     public DialogueLevels dialogueManager; // Référence au DialogueManager
+    public DialogueTutorialManager dialogueTutorialManager; // Référence au DialogueTutorialManager
 
     void Awake()
     {
@@ -36,6 +37,10 @@ public class GamePauseManager : MonoBehaviour
         {
             dialogueManager.enabled = true;
         }
+        if (dialogueTutorialManager != null)
+        {
+            dialogueTutorialManager.enabled = true;
+        }
     }
 
     public void Pause()
@@ -47,6 +52,10 @@ public class GamePauseManager : MonoBehaviour
         if (dialogueManager != null)
         {
             dialogueManager.enabled = false;
+        }
+        if (dialogueTutorialManager != null)
+        {
+            dialogueTutorialManager.enabled = false;
         }
     }
 
