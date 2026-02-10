@@ -21,7 +21,7 @@ public class PlayerTakeCristal : MonoBehaviour
 
     private void Update()
     {
-        if (nearbyCrystal != null && Input.GetKeyDown(KeyCode.E) && !HoldingCrystal)
+        if (nearbyCrystal != null && Input.GetKeyDown(KeyCode.E) && !HoldingCrystal && nearbyCrystal.CompareTag("Lit"))
         {
             Pickup(nearbyCrystal);
             nearbyCrystal = null;
