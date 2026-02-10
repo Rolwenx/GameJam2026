@@ -11640,7 +11640,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700824267}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -14477,8 +14477,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.7191474, y: 0.99999833, z: 1}
-  m_Center: {x: 0.18697913, y: -82.24, z: 0}
+  m_Size: {x: 2.4199595, y: 0.9999984, z: 1}
+  m_Center: {x: -0.11509742, y: -82.23906, z: -1.7598555e-10}
 --- !u!1 &1090146420
 GameObject:
   m_ObjectHideFlags: 0
@@ -16626,7 +16626,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 669548295}
   endText: {fileID: 218607405}
-  nextSceneName: Pick Level
+  nextSceneName: Generator
   currentLevel: 2
   fadeDuration: 2
   waitAfterFade: 2
@@ -35967,7 +35967,7 @@ MonoBehaviour:
   jumpForce: 10
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 80
   feetBox: {fileID: 1672679485}
   groundCastDistance: 0.05
   fallMultiplier: 3
@@ -66760,7 +66760,7 @@ Transform:
   m_GameObject: {fileID: 2136610309}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5030403, y: 0.009604695, z: -10.3}
+  m_LocalPosition: {x: 0.4902401, y: 0.009614711, z: -10.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
