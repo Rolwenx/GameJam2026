@@ -84,6 +84,7 @@ public class SwitchMenu : MonoBehaviour
         // audio
         if (!PlayerPrefs.HasKey("MusicVolume"))
             PlayerPrefs.SetFloat("MusicVolume", 1f);
+        if (!PlayerPrefs.HasKey("SfxVolume"))
 
         // level progression
         for (int i = 1; i <= 4; i++)
