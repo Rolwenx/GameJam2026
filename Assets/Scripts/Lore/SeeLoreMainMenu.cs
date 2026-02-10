@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SeeLoreMainMenu : MonoBehaviour
 {
@@ -15,9 +16,14 @@ public class SeeLoreMainMenu : MonoBehaviour
     public GameObject LoreCanvas;
     public GameObject MenuLoreCanvas;
 
+    public Button SecretButton;
+
+    public GameObject Secret;
+
      void Start()
     {
         LoreCanvas.SetActive(false);
+        Secret.SetActive(false);
     }
         
 
@@ -90,6 +96,27 @@ public class SeeLoreMainMenu : MonoBehaviour
     {
         LoreCanvas.SetActive(false);
         MenuLoreCanvas.SetActive(true);
+        Secret.SetActive(false);
+    }
+
+    public void SecretButtonClicked()
+    {
+        Secret.SetActive(true);
+        MenuLoreCanvas.SetActive(false);
+        LoreCanvas.SetActive(false);
+    }
+
+    void Update(){
+        if (PlayerPrefs.GetInt("AllLoreRead", 0) == 1)
+        {
+            SecretButton.GetComponent<Button>().interactable = true;
+            SecretButton.GetComponent<UnityEngine.UI.Image>().color = new Color32(46, 171, 86, 255);
+        }
+        else {
+            
+            SecretButton.GetComponent<UnityEngine.UI.Image>().color = new Color32(20, 63, 34, 255);
+            SecretButton.GetComponent<Button>().interactable = false;
+        }
     }
 
     

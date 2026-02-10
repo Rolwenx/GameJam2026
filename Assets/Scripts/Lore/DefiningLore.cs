@@ -49,7 +49,7 @@ public class DefiningLore : MonoBehaviour
 
     void Start()
     {
-        loreText.text = "";
+        loreText.gameObject.SetActive(false);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -73,6 +73,7 @@ public class DefiningLore : MonoBehaviour
         if (sceneIndex < 0 || sceneIndex >= allScenesLore.Length) return;
         if (loreIndex < 0 || loreIndex >= allScenesLore[sceneIndex].Length) return;
 
+        loreText.gameObject.SetActive(true);
         loreText.text = "<wave uniformity=0.02>" + allScenesLore[sceneIndex][loreIndex];
         // attendre 5 sec avant d'effacer le texte
         Invoke(nameof(ClearLoreText), 8f);
@@ -85,10 +86,44 @@ public class DefiningLore : MonoBehaviour
         Debug.Log($"Player read {key}");
         gameObject.GetComponent<SpriteRenderer>().enabled = false; // cacher l'objet après lecture
         gameObject.GetComponent<Collider2D>().enabled = false; // désactiver le trigger pour éviter les relectures
+
+
+
+        // s'ils sont tous activés, débloquer le menu de lore dans le menu principal
+        bool allLoreRead = true;
+        for (int s = 0; s < allScenesLore.Length; s++)
+        {
+            for (int l = 0; l < allScenesLore[s].Length; l++)
+            {
+                string k = $"Lore_S{s + 1}_L{l + 1}";
+                if (PlayerPrefs.GetInt(k, 0) == 0)
+                {
+                    allLoreRead = false;
+                    break;
+                }
+            }
+            if (!allLoreRead) break;
+        }
+
+        if (allLoreRead)
+        {
+            PlayerPrefs.SetInt("AllLoreRead", 1);
+            PlayerPrefs.Save();
+        }
+
+
+        //afficher un message de déblocage du menu de lore si c'est la dernière info à lire
+        if (allLoreRead)
+        {
+            // ✅ AJOUT: afficher un message de déblocage
+            loreText.text = "<wave uniformity=0.02>Tu as découvert tous les éléments de l'histoire ! Tu peux maintenant accéder au dernier secret caché dans le menu principal.";
+            // attendre 5 sec avant d'effacer le texte
+            Invoke(nameof(ClearLoreText), 8f);
+        }
     }
 
      void ClearLoreText()
-    {
+    {   
         // ✅ AJOUT: fade out au lieu de vider direct
         if (fadeOutCo != null) StopCoroutine(fadeOutCo);
         fadeOutCo = StartCoroutine(FadeOutThenClear());
@@ -117,5 +152,6 @@ public class DefiningLore : MonoBehaviour
         c.a = 1f;
         loreText.color = c;
         fadeOutCo = null;
+        loreText.gameObject.SetActive(false);
     }
 }
