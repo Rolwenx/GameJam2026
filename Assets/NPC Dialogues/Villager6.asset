@@ -39,6 +39,10 @@ MonoBehaviour:
       yeux."
     - "On a bien fait d\u2019attendre, finalement."
     - "Merci\u2026 \xE0 toi, qui a os\xE9."
-  - state: 0
+  - state: 5
     lines:
-    - Test
+    - "La lumi\xE8re facilite les rondes.\nMoins d\u2019angles morts, moins de surprises."
+    - "Je croyais que le retour de la lumi\xE8re effacerait tout.\nMais elle ne fait
+      que montrer ce qu\u2019on essayait d\u2019oublier."
+    - "Je croyais que le retour de la lumi\xE8re effacerait tout.\nMais elle ne fait
+      que montrer ce qu\u2019on essayait d\u2019oublier."

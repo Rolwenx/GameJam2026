@@ -33,6 +33,10 @@ MonoBehaviour:
     - "Regarde\u2026 on peut enfin voir les couleurs."
     - Le village est vivant. C'est magnifique.
     - "On a bien fait d\u2019attendre, finalement."
-  - state: 0
+  - state: 5
     lines:
-    - Test
+    - "Oui\u2026 la lumi\xE8re est revenue.\nC\u2019est un fait."
+    - "Cette lumi\xE8re, ca change certaines choses, c\u2019est s\xFBr.\nEst-ce que
+      \xE7a change tout ? J\u2019en doute."
+    - "La ville a surv\xE9cu sans lumi\xE8re.\nElle survivra peut-\xEAtre avec."
+    - "Au moins maintenant je peux me coiffer sans probl\xE8me."

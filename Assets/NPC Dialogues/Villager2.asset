@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f2108a6902748bfa8d97587bff098a, type: 3}
   m_Name: Villager2
   m_EditorClassIdentifier: 
-  npcName: Ella
+  npcName: Bibi
   dialogueSets:
   - state: 1
     lines:

@@ -35,6 +35,13 @@ MonoBehaviour:
     - "Les livres devront \xEAtre r\xE9\xE9crits."
     - "On a bien fait d\u2019attendre, finalement."
     - "Merci\u2026 \xE0 toi, qui a os\xE9."
-  - state: 0
+  - state: 5
     lines:
-    - Test
+    - "Quoi qu\u2019il advienne ensuite,\ncet instant restera grav\xE9 dans l\u2019histoire
+      de ce village."
+    - "Tout ne sera peut-\xEAtre pas meilleur.\nMais plus rien ne sera comme avant."
+    - "Tout ne sera peut-\xEAtre pas meilleur.\nMais plus rien ne sera comme avant."
+    - "J\u2019ai attendu ce moment sans vraiment y croire.\nEt pourtant\u2026 le
+      voil\xE0."
+    - "Les livres parleront peut-\xEAtre de cette nuit.\nMais moi, je m\u2019en souviendrai
+      toute ma vie."
