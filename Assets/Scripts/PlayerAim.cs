@@ -29,6 +29,13 @@ public class PlayerAim : MonoBehaviour
             lineRenderer = lightBeam.GetComponentInChildren<LineRenderer>();
             lightBeam.SetActive(false);
         }
+        //remove the line renderer 
+
+
+    }
+
+    public void OnEnable() {
+        lightBeam.SetActive(false);
     }
 
 
