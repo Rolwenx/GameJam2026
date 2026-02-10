@@ -57,8 +57,18 @@ public class SwitchMenu : MonoBehaviour
 
     public void StartGame()
     {
-        PlayerPrefs.DeleteAll(); // pour reset les données de progression (tuto + lore)
+        const string PREF_VOLUME = "MusicVolume"; // mets le même nom que dans GestionVolume
+
+        // 1) garder le son
+        float volume = PlayerPrefs.GetFloat(PREF_VOLUME, 1f);
+
+        // 2) reset tout
+        PlayerPrefs.DeleteAll();
+
+        // 3) remettre le son
+        PlayerPrefs.SetFloat(PREF_VOLUME, volume);
         PlayerPrefs.Save();
+
         SceneManager.LoadScene("IntroCinematiqueDebut");
     }
 
