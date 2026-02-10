@@ -53,7 +53,7 @@ public class Level1Manager : MonoBehaviour
         "Oh, une porte !",
         "Malheureusement, elle est verrouillée. Il doit y avoir un moyen de l'ouvrir...",
         "Certains cristaux sont de la même couleur que la porte...",
-        "Quel coincidence, c'est marrant !"
+        "Quelle coincidence, c'est marrant !"
     };
     private string[] dialoguesAfterWater =
     {

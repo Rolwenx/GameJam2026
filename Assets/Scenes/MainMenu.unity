@@ -6166,7 +6166,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <sketchy amount=0.05>NEED TO FIND A TITLE IN THE FUTURE
+  m_text: <sketchy amount=0.05>WHEN THE SUN SLEEPS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
   m_sharedMaterial: {fileID: -3276648923902688294, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
@@ -6575,7 +6575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <sketchy>NEED TO FIND A TITLE IN THE FUTURE
+  m_text: <sketchy>WHEN THE SUN SLEEPS
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
   m_sharedMaterial: {fileID: -3276648923902688294, guid: f4f3cabbe2c85bf449e6c87f49c97b00, type: 2}
