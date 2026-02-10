@@ -12,6 +12,8 @@ public class GamePauseManager : MonoBehaviour
     public PlayerMovement playerMovementScript;
     public PlayerAim playerAimScript;
 
+    public PlayerTopDownController playerTopDownMovementScript;
+
     void Awake()
     {
         PauseMenu.SetActive(false);
@@ -47,14 +49,28 @@ public class GamePauseManager : MonoBehaviour
         if (dialogueManager != null)
         {
             dialogueManager.enabled = true;
-            playerMovementScript.enabled = true;
-            playerAimScript.enabled = true;
+            if (playerMovementScript != null && playerAimScript != null)
+            {
+                playerMovementScript.enabled = true;
+                playerAimScript.enabled = true;
+            }
+            if (playerTopDownMovementScript != null)
+            {
+                playerTopDownMovementScript.enabled = true;
+            }
         }
         if (dialogueTutorialManager != null)
         {
             dialogueTutorialManager.enabled = true;
-            playerMovementScript.enabled = true;
-            playerAimScript.enabled = true;
+            if (playerMovementScript != null && playerAimScript != null)
+            {
+                playerMovementScript.enabled = true;
+                playerAimScript.enabled = true;
+            }
+            if (playerTopDownMovementScript != null)
+            {
+                playerTopDownMovementScript.enabled = true;
+            }
         }
 
         
@@ -67,14 +83,28 @@ public class GamePauseManager : MonoBehaviour
         if (dialogueManager != null)
         {
             dialogueManager.enabled = false;
-            playerMovementScript.enabled = false;
-            playerAimScript.enabled = false;
+            if (playerMovementScript != null && playerAimScript != null)
+            {
+                playerMovementScript.enabled = false;
+                playerAimScript.enabled = false;
+            }
+            if (playerTopDownMovementScript != null)
+            {
+                playerTopDownMovementScript.enabled = false;
+            }
         }
         if (dialogueTutorialManager != null)
         {
             dialogueTutorialManager.enabled = false;
+            if (playerMovementScript != null && playerAimScript != null)
+            {
             playerMovementScript.enabled = false;
-            playerAimScript.enabled = false;
+                playerAimScript.enabled = false;
+            }
+            if (playerTopDownMovementScript != null)
+            {
+                playerTopDownMovementScript.enabled = false;
+            }
         }
 
         }
