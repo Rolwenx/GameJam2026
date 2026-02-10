@@ -4,5 +4,6 @@ public enum GameProgressState
     Level1Completed = 1,
     Level2Completed = 2,
     Level3Completed = 3,
-    Level4Completed = 4
+    Level4Completed = 4,
+    GameFinished = 5
 }

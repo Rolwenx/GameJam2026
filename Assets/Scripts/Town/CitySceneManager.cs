@@ -6,6 +6,7 @@ using UnityEngine.Rendering.Universal;
 public class CitySceneManager : MonoBehaviour
 {
     private const string CITY_VISITED_KEY = "CityScene_Visited";
+    private const string GAME_FINISHED = "GameFinished";
     private const string LAST_SCENE_KEY = "LastScene";
 
     [Header("Player Spawn Points")]
@@ -38,9 +39,12 @@ public class CitySceneManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt(CITY_VISITED_KEY, 0) == 0)
         {
-            Debug.Log("City intro started");
             StartCoroutine(FirstTimeCityIntro());
             
+        }
+        else if(PlayerPrefs.GetInt(GAME_FINISHED, 0) == 1)
+        {
+            StartCoroutine(GameFinished());
         }
         else
         {
@@ -113,6 +117,43 @@ public class CitySceneManager : MonoBehaviour
             cameraFollow.RecalculateOffset();
             cameraFollow.enabled = true;
         }
+        Time.timeScale = 1f;
+        level_choice.SetActive(true);
+        
+    }
+
+    private IEnumerator GameFinished()
+    {
+
+        Time.timeScale = 0f;
+
+        yield return new WaitForSecondsRealtime(2f);
+
+        panel.SetActive(true);
+
+        introText.text =
+        "Tu viens d’achever ton voyage. Félicitations.\n\n" +
+        "Si tu n’as pas encore récolté toutes les balises de Lore dans chaque niveau\n" +
+        "(il y en a deux par niveau), prends le temps de le faire.\n\n" +
+        "Elles révèlent peu à peu ce qui s’est réellement passé dans ce village,\n" +
+        "et les raisons pour lesquelles la lumière a disparu.\n\n" +
+        "N’hésite pas non plus à retourner parler aux habitants.\n" +
+        "Leurs réactions ont changé.\n\n" +
+        "Merci d’avoir pris part à cette histoire.\n" +
+        "Nous espérons qu’elle t’a plu.\n\n" +
+        "<size=70%><i>(Clique gauche pour continuer)</i></size>";
+
+        yield return WaitForLeftClick();
+
+        introText.text =
+        "Si vous cherchez votre progression...\n" +
+        "Voici la zone du générateur de lumière.\n\n" +
+        "<size=70%><i>(Clique gauche)</i></size>";
+
+        yield return WaitForLeftClick();
+
+        panel.SetActive(false);
+
         Time.timeScale = 1f;
         level_choice.SetActive(true);
         
