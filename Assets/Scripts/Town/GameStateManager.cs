@@ -31,9 +31,11 @@ public class GameStateManager : MonoBehaviour
         CurrentState = newState;
         OnStateChanged?.Invoke(CurrentState);
     }
-
     private GameProgressState CalculateStateFromFlags()
     {
+        if (PlayerPrefs.GetInt("GameFinished", 0) == 1)
+            return GameProgressState.GameFinished;
+
         if (IsLevelCompleted(4)) return GameProgressState.Level4Completed;
         if (IsLevelCompleted(3)) return GameProgressState.Level3Completed;
         if (IsLevelCompleted(2)) return GameProgressState.Level2Completed;

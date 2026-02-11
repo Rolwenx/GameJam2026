@@ -137,17 +137,20 @@ public class CitySceneManager : MonoBehaviour
         "(il y en a deux par niveau), prends le temps de le faire.\n\n" +
         "Elles révèlent peu à peu ce qui s’est réellement passé dans ce village,\n" +
         "et les raisons pour lesquelles la lumière a disparu.\n\n" +
-        "N’hésite pas non plus à retourner parler aux habitants.\n" +
-        "Leurs réactions ont changé.\n\n" +
-        "Merci d’avoir pris part à cette histoire.\n" +
-        "Nous espérons qu’elle t’a plu.\n\n" +
         "<size=70%><i>(Clique gauche pour continuer)</i></size>";
 
         yield return WaitForLeftClick();
 
         introText.text =
-        "Si vous cherchez votre progression...\n" +
-        "Voici la zone du générateur de lumière.\n\n" +
+         "N’hésite pas non plus à retourner parler aux habitants.\n" +
+        "Leurs réactions ont changé.\n\n" +
+        "<size=70%><i>(Clique gauche)</i></size>";
+
+        yield return WaitForLeftClick();
+
+        introText.text =
+        "Merci d’avoir pris part à cette histoire.\n" +
+         "Nous espérons qu’elle t’a plu.\n\n" +
         "<size=70%><i>(Clique gauche)</i></size>";
 
         yield return WaitForLeftClick();

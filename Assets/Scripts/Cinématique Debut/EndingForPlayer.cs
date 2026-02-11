@@ -13,7 +13,7 @@ public class EndingForPlayer : MonoBehaviour
     public float lightTargetRadius = 50f;
 
     [Header("Ending")]
-    public string nextSceneName = "CreditScene";
+    public string nextSceneName = "Credit";
 
     private bool fadingOut = false;
     private bool fadingIn = false;
@@ -55,6 +55,7 @@ public class EndingForPlayer : MonoBehaviour
                 playerLight.pointLightOuterRadius = 0f;
                 PlayerPrefs.SetInt("GameFinished", 1);
                 PlayerPrefs.Save();
+                GameStateManager.Instance.RefreshState();
                 SceneManager.LoadScene(nextSceneName);
             }
         }
@@ -74,6 +75,10 @@ public class EndingForPlayer : MonoBehaviour
 
     public void EndGameWithLightFade()
     {
+        Debug.Log("END GAME FADE STARTED");
+        Time.timeScale = 1f; 
+        if (playerLight.pointLightOuterRadius <= 0.1f)
+            playerLight.pointLightOuterRadius = 0.1f;
         endingFade = true;
         fadingOut = false;
         fadingIn = false;

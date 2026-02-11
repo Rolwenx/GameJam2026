@@ -38,6 +38,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CinematiqueDebut/IntroCinematiqueDebut.unity
     guid: 38051fe67a7f540abb8dcba061fbd92f
+  - enabled: 1
+    path: Assets/Scenes/CinematiqueFin/Ending.unity
+    guid: e829ef2cab02a4b08b34139367d07475
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
