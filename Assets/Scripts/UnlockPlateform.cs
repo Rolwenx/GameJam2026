@@ -29,7 +29,7 @@ public class UnlockPlateform : MonoBehaviour
     
 
     public void Up(){
-        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 18f, transform.position.z), 5f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 18f, transform.position.z), 2f * Time.deltaTime);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -41,7 +41,9 @@ public class UnlockPlateform : MonoBehaviour
             cristalhidden.SetActive(true);
         }
         else {
-            goUp = true;
+            if(ouverturePorte.opened){
+                goUp = true;
+            }
 
         }
     }
