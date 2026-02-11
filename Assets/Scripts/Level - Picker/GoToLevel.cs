@@ -81,13 +81,12 @@ public class GoToLevel : MonoBehaviour
         }
 
         bool thisCompleted = PlayerPrefs.GetInt("Level_" + currentLevel + "_Completed", 0) == 1;
-        //int highScore = PlayerPrefs.GetInt($"Level_"+ currentLevel+ "_HighScore", 0);
 
         // if the previous level hasn't been completed
         if (!previousCompleted)
         {
             worldText.text =
-                "You haven't completed the previous level.\nCome back later.";
+                "Tu n'as pas completé le niveau suivant.\nReviens plus tard.";
             return;
         }
 
@@ -96,14 +95,14 @@ public class GoToLevel : MonoBehaviour
         if (thisCompleted)
         {
             worldText.text =
-                "Do you want to retry this level?\n" +
-                "Press E to play";
+                "Veux-tu rejouer ce niveau ?\n" +
+                "Appuie sur E pour jouer";
         }
         else
         {
             worldText.text =
-                "Do you want to play this level?\n" +
-                "Press E to go";
+                "Veux-tu jouer ce niveau ?\n" +
+                "Appuie sur E pour jouer";
         }
     }
 

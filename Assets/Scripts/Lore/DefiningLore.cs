@@ -11,10 +11,24 @@ public class DefiningLore : MonoBehaviour
 
     private string[][] allScenesLore;
 
-    private string[] Scene1Lore = { "Verrélume n’a jamais eu peur du noir… jusqu’au jour où la lumière s’est tue.", "Le Cœur-Lux transformait les gros éclats en jour artificiel. On l’appelait ‘le Soleil du village’." };
-    private string[] Scene2Lore = { "Quand la lumière faiblissait, on descendait chercher d’autres éclats… toujours plus profond.", "Les anciens gravaient une règle : ‘Ne dirige jamais le faisceau vers le Cœur." };
-    private string[] Scene3Lore = { "La nuit du Chaos, quelqu’un a retiré les éclats du générateur. La ville s’est éteinte en une minute.", "Après ça, ils ont muré des couloirs. Comme si quelque chose voulait remonter." };
-    private string[] Scene4Lore = { "Ils n’ont pas caché les éclats pour les garder… ils les ont cachés pour empêcher le Cœur de se réveiller." ,"Le Cœur-Lux ne se nourrit pas de fragments. Il se nourrit d’une source vivante. Et elle est déjà là."};
+    private string[] Scene1Lore = { "Verrélume brillait même sans soleil… jusqu’au jour où tout s’est arrêté.", "Au centre du village, le Cœur-Lux transformait les grands éclats en jour artificiel. On l’appelait le « Soleil du village »" };
+    private string[] Scene2Lore =
+    {
+        "Quand la lumière faiblissait, on descendait chercher d’autres éclats… toujours plus profond sous la ville.",
+        "Les anciens avaient gravé une règle : « Ne dirige jamais le faisceau vers le Cœur. »"
+    };
+
+        private string[] Scene3Lore =
+    {
+        "La Nuit du Chaos, quelqu’un a retiré les éclats du générateur. En une minute, le village s’est éteint.",
+        "Après ça, des couloirs ont été murés… comme si quelque chose, en bas, devait rester enfermé."
+    };
+
+    private string[] Scene4Lore =
+    {
+        "Ils n’ont pas caché les éclats pour les garder… mais pour empêcher le Cœur de se réveiller.",
+        "Le Cœur-Lux n’attend pas seulement de la lumière. Il attend une source… vivante."
+    };
     [SerializeField] private float fadeOutDuration = 0.25f;
     private Coroutine fadeOutCo;
 
