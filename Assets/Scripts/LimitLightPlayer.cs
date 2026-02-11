@@ -29,6 +29,16 @@ public class LimitLightPlayer : MonoBehaviour
             currentLight = Mathf.Clamp(currentLight - drainPerSecond * Time.deltaTime, 0f, maxLight);
             UpdateUI();
         }
+
+         if (currentLight <= 0f)
+        {
+            sliderLight.value = 0f;
+            if (percentageText != null)
+                percentageText.text = "0";
+            // reload la scène après 1 sec
+            Invoke(nameof(ReloadScene), 1f);
+            return;
+        }
     }
 
     void UpdateUI()
@@ -61,5 +71,11 @@ public class LimitLightPlayer : MonoBehaviour
             UpdateUI();
             collision.gameObject.SetActive(false); // on désactive la recharge après l'avoir utilisée
         }
+    }
+
+
+    void ReloadScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }
