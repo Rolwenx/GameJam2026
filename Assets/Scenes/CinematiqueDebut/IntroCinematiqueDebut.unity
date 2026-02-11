@@ -239,7 +239,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<wave uniformity=0.008>Un ancien m\xE9canisme.\r\nUn \u201Cc\u0153ur\u201D
-    oubli\xE9, qui autrefois redistribuait la lumi\xE8re \xE0 travers Ecosia.\r\n"
+    oubli\xE9, qui autrefois redistribuait la lumi\xE8re \xE0 travers Verr\xE9lume.\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1799,7 +1799,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "<wave uniformity=0.008>Depuis plusieurs ann\xE9es, sans que personne ne
-    sache vraiment pourquoi, la lumi\xE8re a d\xE9sert\xE9 le petit village d\u2019Ecosia."
+    sache vraiment pourquoi, la lumi\xE8re a d\xE9sert\xE9 le petit village de Verr\xE9lume."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
   m_sharedMaterial: {fileID: -8267736675288204585, guid: c8b21dbe1dfb4c44ca60e354a7a2eac6, type: 2}
